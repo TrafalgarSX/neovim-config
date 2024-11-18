@@ -83,7 +83,7 @@ keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 
 -- for easymotion
 keymap("n", "<space>", "<Plug>(easymotion-prefix)", { noremap = false, silent = true })
-keymap("n", "<space><space>w", "<Plug>(easymotion-w)", opts)
-keymap("n", "<space><space>b", "<Plug>(easymotion-b)", opts)
+keymap("n", "<space>z", "<Plug>(easymotion-w)", opts)
+keymap("n", "<space>b", "<Plug>(easymotion-b)", opts)
 keymap("n", "s", "<Plug>(easymotion-s2)", opts)
 keymap("n", "t", "<Plug>(easymotion-t2)", opts)
