@@ -1,11 +1,10 @@
 local opts = { noremap = true, silent = true }
-local false_opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
-
+-- local false_opts = { noremap = true, silent = true }
+-- local term_opts = { silent = true }
+-- local keydel = vim.keymap.del
+--
 -- Shorten function name
 local keymap = vim.keymap.set
-local keydel = vim.keymap.del
 
 --[[
 --Remap space as leader key
@@ -83,7 +82,7 @@ keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 
 -- for easymotion
 keymap("n", "<space>", "<Plug>(easymotion-prefix)", { noremap = false, silent = true })
-keymap("n", "<space>z", "<Plug>(easymotion-w)", opts)
+keymap("n", "<space>w", "<Plug>(easymotion-w)", opts)
 keymap("n", "<space>b", "<Plug>(easymotion-b)", opts)
 keymap("n", "s", "<Plug>(easymotion-s2)", opts)
 keymap("n", "t", "<Plug>(easymotion-t2)", opts)

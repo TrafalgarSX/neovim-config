@@ -51,5 +51,11 @@ end
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.iskeyword:append("-") -- 连字符连接的单词会被视为一个单词
 -- 禁用自动注释
-vim.opt.formatoptions:remove({ "c", "r", "o" }) -- don't insert the current comment leader automatically for auto-wrapping comments using 'textwidth', hitting <Enter> in insert mode, or hitting 'o' or 'O' in normal mode.
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Rid auto comment for new string",
+  callback = function()
+    vim.opt.formatoptions:remove({ "c", "r", "o" })
+  end,
+})

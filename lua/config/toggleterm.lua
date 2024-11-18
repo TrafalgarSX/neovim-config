@@ -3,12 +3,22 @@ if not is_ok then
 	return
 end
 
+-- 判断系统
+
+local shell
+if vim.fn.has("win32") == 1 then
+  shell  = "pwsh.exe"
+else
+  shell = vim.o.shell
+end
+
+
 toggleterm.setup({
 	size = 10,
 	open_mapping = [[<C-`>]], -- how to open a new terminal
 	hide_numbers = true, -- hide the number column in toggleterm buffers
 	close_on_exit = true, -- close the terminal window when the process exits
-	shell = vim.o.shell, -- change the default shell
+	shell = shell, -- change the default shell
 	direction = "horizontal",
 	float_opts = {
 		-- The border key is *almost* the same as 'nvim_open_win'
