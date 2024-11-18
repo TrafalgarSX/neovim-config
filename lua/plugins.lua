@@ -172,9 +172,10 @@ require("lazy").setup({
 		end,
 	},
 	-- Smart motion
-	-- Usage: Enter a 2-character search pattern then press a label character to
-	--        pick your target.
-	--        Initiate the sesarch with `s`(forward) or `S`(backward)
+  {
+    "easymotion/vim-easymotion",
+  },
+--[[
 	{
 		"ggandor/leap.nvim",
 		config = function()
@@ -182,6 +183,7 @@ require("lazy").setup({
 			require("leap").create_default_mappings()
 		end,
 	},
+--]]
 	-- Make surrounding easier
 	-- ------------------------------------------------------------------
 	-- Old text                    Command         New text
@@ -241,8 +243,14 @@ require("lazy").setup({
 	},
 	-- Colorscheme
 	"tanvirtin/monokai.nvim",
-	"navarasu/onedark.nvim",
-	"sainnhe/sonokai",
+  {
+    "navarasu/onedark.nvim",
+    lazy = true,
+  },
+  {
+    "sainnhe/sonokai",
+    lazy = true,
+  },
 	"sainnhe/everforest",
 	{
 		"sainnhe/gruvbox-material",
@@ -258,7 +266,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/tokyonight.nvim",
-		lazy = false,
+		lazy = true,
 		priority = 1000,
 		opts = {},
 	},
