@@ -75,8 +75,15 @@ require("lazy").setup({
 	-- Code snippet engine
 	{
 		"L3MON4D3/LuaSnip",
+    build="make install_jsregexp",
 		version = "v2.*",
 	},
+  {
+    "rcarriga/nvim-notify",
+		opts = {
+      stages = 'static'
+		},
+  },
 	-- Better UI
 	-- Run `:checkhealth noice` to check for common issues
 	{
@@ -341,6 +348,7 @@ require("lazy").setup({
 	-- cmake-tools like vscode
 	{
 		"Civitasv/cmake-tools.nvim",
+    event = 'BufRead CMakeLists.txt',
 		config = function()
 			require("config.cmake")
 		end,

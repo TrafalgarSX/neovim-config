@@ -36,7 +36,7 @@ local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	if client.name == "rust_analyzer" then
+	if client.name == "clangd" then
 		-- WARNING: This feature requires Neovim 0.10 or later.
 		vim.lsp.inlay_hint.enable()
 	end
@@ -109,8 +109,8 @@ local lsp_servers_with_default_config = {
 	"ts_ls",
 	"pylsp",
 	"clangd",
-    "lua_ls",
-    "cmake",
+	"lua_ls",
+	"cmake",
 }
 
 for _, lsp in ipairs(lsp_servers_with_default_config) do
