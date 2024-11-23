@@ -30,13 +30,15 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
+
+local inlay_hint_servers = { "clangd", "pylsp", "ts_ls" } -- 添加支持 inlay_hint 的语言服务器名称
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer.
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	if client.name == "clangd" then
+	if vim.tbl_contains(inlay_hint_servers, client.name) then
 		-- WARNING: This feature requires Neovim 0.10 or later.
 		vim.lsp.inlay_hint.enable()
 	end
@@ -77,6 +79,18 @@ end
 -- Hint (find <name> here) : https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 lspconfig.pylsp.setup({
 	on_attach = on_attach,
+  -- venv settings
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = {
+          enabled = true,
+        },
+      }
+    }
+  }
+
+
 })
 
 lspconfig.lua_ls.setup({

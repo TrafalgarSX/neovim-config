@@ -86,3 +86,7 @@ keymap("n", "<space>w", "<Plug>(easymotion-w)", opts)
 keymap("n", "<space>b", "<Plug>(easymotion-b)", opts)
 keymap("n", "s", "<Plug>(easymotion-s2)", opts)
 keymap("n", "t", "<Plug>(easymotion-t2)", opts)
+
+-- for lsp
+
+keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
