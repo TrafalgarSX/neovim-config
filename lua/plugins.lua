@@ -172,9 +172,13 @@ require("lazy").setup({
 		end,
 	},
 	-- Smart motion
-  {
-    "easymotion/vim-easymotion",
-  },
+	{
+			'smoka7/hop.nvim',
+			version = "*",
+			opts = {
+					keys = 'etovxqpdygfblzhckisuran'
+			}
+	},
 --[[
 	{
 		"ggandor/leap.nvim",

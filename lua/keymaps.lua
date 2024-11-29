@@ -80,12 +80,14 @@ keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
 keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
 keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 
--- for easymotion
-keymap("n", "<space>", "<Plug>(easymotion-prefix)", { noremap = false, silent = true })
-keymap("n", "<space>w", "<Plug>(easymotion-w)", opts)
-keymap("n", "<space>b", "<Plug>(easymotion-b)", opts)
-keymap("n", "s", "<Plug>(easymotion-s2)", opts)
-keymap("n", "t", "<Plug>(easymotion-t2)", opts)
+-- for hop 
+keymap("n", "<space>w", ":HopWordAC<CR>", opts)
+keymap("n", "<space>b", ":HopWordBC<CR>", opts)
+keymap("n", "<space>p", ":HopPattern<CR>", opts)
+keymap("n", "s", ":HopChar2<CR>", opts)
+keymap("n", "t", ":HopLineStart<CR>", opts)
+keymap("n", "f", ":HopPatternCurrentLineAC<CR>", opts)
+keymap("n", "F", ":HopPatternCurrentLineBC<CR>", opts)
 
 -- for lsp
 
