@@ -281,9 +281,10 @@ require("lazy").setup({
 		end,
 	},
 	-- Improve the performance of big file
-	{
-		"pteroctopus/faster.nvim",
-	},
+  {
+    "LunarVim/bigfile.nvim"
+  },
+
 	{
 		"folke/trouble.nvim",
 		branch = "dev",
@@ -407,12 +408,15 @@ require("lazy").setup({
 		end,
 	},
   {
-  'stevearc/aerial.nvim',
-  opts = {},
-  -- Optional dependencies
-  dependencies = {
-     "nvim-treesitter/nvim-treesitter",
-     "nvim-tree/nvim-web-devicons"
+    "RRethy/vim-illuminate"
   },
-}
+  {
+    'stevearc/aerial.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = {
+       "nvim-treesitter/nvim-treesitter",
+       "nvim-tree/nvim-web-devicons"
+    },
+  }
 })
