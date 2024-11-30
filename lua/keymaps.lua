@@ -83,12 +83,13 @@ keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 -- for hop 
 keymap("n", "<space>w", ":HopWordAC<CR>", opts)
 keymap("n", "<space>b", ":HopWordBC<CR>", opts)
+--[[ 
 keymap("n", "<space>p", ":HopPattern<CR>", opts)
 keymap("n", "s", ":HopChar2<CR>", opts)
 keymap("n", "t", ":HopLineStart<CR>", opts)
 keymap("n", "f", ":HopPatternCurrentLineAC<CR>", opts)
 keymap("n", "F", ":HopPatternCurrentLineBC<CR>", opts)
-
+ ]]
 -- for lsp
 
 keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
