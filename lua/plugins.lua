@@ -34,9 +34,15 @@ vim.opt.rtp:prepend(lazypath)
 --     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
 	-- LSP manager
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	"neovim/nvim-lspconfig",
+  {
+    "williamboman/mason.nvim",
+  },
+	{
+    "williamboman/mason-lspconfig.nvim",
+  },
+  {
+    "neovim/nvim-lspconfig",
+  },
 	-- Add hooks to LSP to support Linter && Formatter
 	{
 		"jay-babu/mason-null-ls.nvim",
@@ -75,15 +81,15 @@ require("lazy").setup({
 	-- Code snippet engine
 	{
 		"L3MON4D3/LuaSnip",
-    build="make install_jsregexp",
+		build = "make install_jsregexp",
 		version = "v2.*",
 	},
-  {
-    "rcarriga/nvim-notify",
+	{
+		"rcarriga/nvim-notify",
 		opts = {
-      stages = 'static'
+			stages = "static",
 		},
-  },
+	},
 	-- Better UI
 	-- Run `:checkhealth noice` to check for common issues
 	{
@@ -151,7 +157,10 @@ require("lazy").setup({
 		end,
 	},
 	-- Markdown support
-	{ "preservim/vim-markdown", ft = { "markdown" } },
+	{
+		"preservim/vim-markdown",
+		ft = { "markdown" },
+	},
 	-- Markdown previewer
 	{
 		"iamcco/markdown-preview.nvim",
@@ -173,21 +182,12 @@ require("lazy").setup({
 	},
 	-- Smart motion
 	{
-			'smoka7/hop.nvim',
-			version = "*",
-			opts = {
-					keys = 'etovxqpdygfblzhckisuran'
-			}
+		"smoka7/hop.nvim",
+		version = "*",
+		opts = {
+			keys = "etovxqpdygfblzhckisuran",
+		},
 	},
---[[
-	{
-		"ggandor/leap.nvim",
-		config = function()
-			-- See `:h leap-custom-mappings` for more details
-			require("leap").create_default_mappings()
-		end,
-	},
---]]
 	-- Make surrounding easier
 	-- ------------------------------------------------------------------
 	-- Old text                    Command         New text
@@ -235,7 +235,6 @@ require("lazy").setup({
 	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("config.telescope")
@@ -246,15 +245,17 @@ require("lazy").setup({
 		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
 	},
 	-- Colorscheme
-	"tanvirtin/monokai.nvim",
-  {
-    "navarasu/onedark.nvim",
-    lazy = true,
-  },
-  {
-    "sainnhe/sonokai",
-    lazy = true,
-  },
+	{
+		"tanvirtin/monokai.nvim",
+	},
+	{
+		"navarasu/onedark.nvim",
+		lazy = true,
+	},
+	{
+		"sainnhe/sonokai",
+		lazy = true,
+	},
 	"sainnhe/everforest",
 	{
 		"sainnhe/gruvbox-material",
@@ -281,9 +282,9 @@ require("lazy").setup({
 		end,
 	},
 	-- Improve the performance of big file
-  {
-    "LunarVim/bigfile.nvim"
-  },
+	{
+		"LunarVim/bigfile.nvim",
+	},
 
 	{
 		"folke/trouble.nvim",
@@ -361,7 +362,7 @@ require("lazy").setup({
 	-- cmake-tools like vscode
 	{
 		"Civitasv/cmake-tools.nvim",
-    event = 'BufRead CMakeLists.txt',
+		event = "BufRead CMakeLists.txt",
 		config = function()
 			require("config.cmake")
 		end,
@@ -407,44 +408,43 @@ require("lazy").setup({
 			require("config.dappy")
 		end,
 	},
-  {
-    "RRethy/vim-illuminate"
-  },
-  {
-    'stevearc/aerial.nvim',
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-       "nvim-treesitter/nvim-treesitter",
-       "nvim-tree/nvim-web-devicons"
-    },
-  },
-  -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
-  {
-      'numToStr/Comment.nvim',
-      opts = {
-          -- add any options here
-      },
-      config = function()
-        require('Comment').setup()
-      end
-  },
-  {
-    'sindrets/diffview.nvim'
-  },
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    ---@type Flash.Config
-    opts = {},
+	{
+		"RRethy/vim-illuminate",
+	},
+	{
+		"stevearc/aerial.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	-- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
+	{
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
+		},
+		config = function()
+			require("Comment").setup()
+		end,
+	},
+	{
+		"sindrets/diffview.nvim",
+	},
+	{
+		-- easymotion like
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
     -- stylua: ignore
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
-  }
-
+	},
 })

@@ -46,11 +46,6 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
--- For nvim-tree
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.iskeyword:append("-") -- 连字符连接的单词会被视为一个单词
 -- 禁用自动注释
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -59,3 +54,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.opt.formatoptions:remove({ "c", "r", "o" })
   end,
 })
+
+-- For nvim-tree
+-- disable netrw at the very start of your init.lua (strongly advised)
+if not vim.g.vscode then
+  vim.g.loaded_netrw = 1
+  vim.g.loaded_netrwPlugin = 1
+end
+
+

@@ -4,6 +4,7 @@ local opts = { noremap = true, silent = true }
 -- local keydel = vim.keymap.del
 --
 -- Shorten function name
+local is_vscode = vim.g.vscode == true
 local keymap = vim.keymap.set
 
 --[[
@@ -35,10 +36,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 
--- For nvim-tree.lua
--- default leader key: \
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
 -----------------
 -- Visual mode --
 -----------------
@@ -62,24 +59,6 @@ keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 -----------------
 keymap("i", "<C-;>", "<End>", opts)
 
--- For nvim-tree.lua
--- default leader key: \
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-
--- For nvim-treesitter
--- 1. Press `gss` to intialize selection. (ss = start selection)
--- 2. Now we are in the visual mode.
--- 3. Press `gsi` to increment selection by AST node. (si = selection incremental)
--- 4. Press `gsc` to increment selection by scope. (sc = scope)
--- 5. Press `gsd` to decrement selection. (sd = selection decrement)
-
--- nvim-dap
-keymap("n", "<F9>", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
-keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
-keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
-keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
-keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
-
 -- for hop 
 keymap("n", "<space>w", ":HopWordAC<CR>", opts)
 keymap("n", "<space>b", ":HopWordBC<CR>", opts)
@@ -90,6 +69,29 @@ keymap("n", "t", ":HopLineStart<CR>", opts)
 keymap("n", "f", ":HopPatternCurrentLineAC<CR>", opts)
 keymap("n", "F", ":HopPatternCurrentLineBC<CR>", opts)
  ]]
--- for lsp
 
-keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
+
+if not is_vscode then
+  -- For nvim-tree.lua
+  -- default leader key: \
+  keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+  -- For nvim-treesitter
+  -- 1. Press `gss` to intialize selection. (ss = start selection)
+  -- 2. Now we are in the visual mode.
+  -- 3. Press `gsi` to increment selection by AST node. (si = selection incremental)
+  -- 4. Press `gsc` to increment selection by scope. (sc = scope)
+  -- 5. Press `gsd` to decrement selection. (sd = selection decrement)
+
+  -- nvim-dap
+  keymap("n", "<F9>", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
+  keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
+  keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
+  keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
+  keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
+
+  -- for lsp
+  keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
+
+end
+
