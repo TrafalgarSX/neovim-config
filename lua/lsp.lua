@@ -83,7 +83,8 @@ end
   typeCheckingMode = 'off',
   useLibraryCodeForTypes = true 
 ]]
-
+-- ref: https://github.com/astral-sh/ruff-lsp/issues/384
+-- ref: https://github.com/petobens/dotfiles/blob/55cce522f213144884a2d70b80de8f531aae1958/nvim/lua/plugin-config/lsp_config.lua#L112
 lspconfig.basedpyright.setup({
   -- on_attach = on_attach,
   settings = {
