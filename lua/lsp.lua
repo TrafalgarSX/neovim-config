@@ -12,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
 	-- A list of servers to automatically install if they're not already installed.
-	ensure_installed = { "pylsp", "lua_ls", "bashls", "clangd", "ts_ls" },
+	ensure_installed = {"ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls" },
 })
 
 -- Set different settings for different languages' LSP.
@@ -31,7 +31,7 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
 
-local inlay_hint_servers = { "clangd", "pylsp", "ts_ls" } -- 添加支持 inlay_hint 的语言服务器名称
+local inlay_hint_servers = { "clangd", "basedpyright", "ts_ls" } -- 添加支持 inlay_hint 的语言服务器名称
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer.
 local on_attach = function(client, bufnr)
@@ -77,21 +77,36 @@ end
 -- 1. Use `:Mason` to install the corresponding LSP.
 -- 2. Add the configuration below. The syntax is `lspconfig.<name>.setup(...)`
 -- Hint (find <name> here) : https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-lspconfig.pylsp.setup({
-	on_attach = on_attach,
-  -- venv settings
+--[[               
+  autoSearchPaths = true,
+  diagnosticMode = 'openFilesOnly',
+  typeCheckingMode = 'off',
+  useLibraryCodeForTypes = true 
+]]
+
+lspconfig.basedpyright.setup({
+  -- on_attach = on_attach,
   settings = {
-    pylsp = {
-      plugins = {
-        ruff = {
-          enabled = true,
-        },
-      }
-    }
-  }
-
-
+      basedpyright = {
+          disableOrganizeImports = true, --using ruff
+          analysis = {
+            ignore = { '*' }, -- Using ruff
+            typeCheckingMode = 'off',
+          },
+      },
+  },
 })
+
+lspconfig.ruff.setup({
+  on_attach = on_attach,
+  init_options = {
+        settings = {
+            -- Any extra CLI arguments for `ruff` go here.
+            args = {},
+        }
+  }
+})
+
 
 lspconfig.lua_ls.setup({
 	on_attach = on_attach,
@@ -121,9 +136,7 @@ lspconfig.lua_ls.setup({
 local lsp_servers_with_default_config = {
 	"bashls",
 	"ts_ls",
-	"pylsp",
 	"clangd",
-	"lua_ls",
 	"cmake",
 }
 

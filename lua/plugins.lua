@@ -43,22 +43,6 @@ require("lazy").setup({
   {
     "neovim/nvim-lspconfig",
   },
-	-- Add hooks to LSP to support Linter && Formatter
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-		config = function()
-			-- Note:
-			--     the default search path for `require` is ~/.config/nvim/lua
-			--     use a `.` as a path separator
-			--     the suffix `.lua` is not needed
-			require("config.mason-null-ls")
-		end,
-	},
 	-- Vscode-like pictograms
 	{
 		"onsails/lspkind.nvim",
@@ -340,7 +324,7 @@ require("lazy").setup({
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		branch = "canary",
+		branch = "main",
 		dependencies = {
 			{ "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
 			{ "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
