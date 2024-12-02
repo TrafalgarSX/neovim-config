@@ -250,11 +250,9 @@ require("lazy").setup({
 	},
 	{
 		"navarasu/onedark.nvim",
-		lazy = true,
 	},
 	{
 		"sainnhe/sonokai",
-		lazy = true,
 	},
 	"sainnhe/everforest",
 	{
@@ -267,11 +265,11 @@ require("lazy").setup({
 			vim.g.gruvbox_material_enable_italic = 1
 			vim.g.gruvbox_material_dim_inactive_windows = 1
 			vim.g.gruvbox_material_better_performance = 1
+      vim.g.gruvbox_material_current_word = "high contrast background"
 		end,
 	},
 	{
 		"folke/tokyonight.nvim",
-		lazy = true,
 		priority = 1000,
 		opts = {},
 	},
@@ -413,6 +411,7 @@ require("lazy").setup({
 	},
 	{
 		"stevearc/aerial.nvim",
+		event = "VeryLazy",
 		opts = {},
 		-- Optional dependencies
 		dependencies = {
@@ -432,6 +431,7 @@ require("lazy").setup({
 	},
 	{
 		"sindrets/diffview.nvim",
+		event = "VeryLazy",
 	},
 	{
 		-- easymotion like
