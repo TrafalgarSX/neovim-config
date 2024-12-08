@@ -93,5 +93,11 @@ if not is_vscode then
   -- for lsp
   keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
 
+
+  -- for yazi.nvim
+  keymap("n", "<space>-", ":Yazi<CR>", opts)
+  keymap("n", "<space>cw", ":Yazi cwd<CR>", opts)
+  keymap("n", "<C-up>", ":Yazi toggle<CR>", opts)
+
 end
 
