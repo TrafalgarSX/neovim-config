@@ -36,9 +36,11 @@ require("lazy").setup({
 	-- LSP manager
   {
     "williamboman/mason.nvim",
+    event = "VeryLazy",
   },
 	{
     "williamboman/mason-lspconfig.nvim",
+    event = "VeryLazy",
   },
   {
     "neovim/nvim-lspconfig",
@@ -254,6 +256,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/tokyonight.nvim",
+    event = "VeryLazy",
 		priority = 1000,
 		opts = {},
 	},
@@ -456,6 +459,7 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",              -- optional
       "echasnovski/mini.pick",         -- optional
     },
-    config = true
+    config = true,
+		event = "VeryLazy",
   },
 })
