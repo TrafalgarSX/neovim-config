@@ -3,10 +3,8 @@ if not is_ok then
 	return
 end
 
-copilot.setup()
---[[
-copilot.setup({
+require("copilot").setup({
   suggestion = { enabled = false },
   panel = { enabled = false },
 })
---]]
+

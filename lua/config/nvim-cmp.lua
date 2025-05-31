@@ -41,7 +41,8 @@ cmp.setup({
 		["<Tab>"] = vim.schedule_wrap(function(fallback)
 			-- Hint: if the completion menu is visible select the next one
 			-- if cmp.visible() and has_words_before() then
-			if cmp.visible() then
+			-- if cmp.visible() then
+      if cmp.visible() and has_words_before() then
                 cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
 			elseif luasnip.expand_or_locally_jumpable() then
 				-- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
@@ -70,7 +71,7 @@ cmp.setup({
 			-- Show only symbol annotations
 			mode = "symbol",
 			maxwidth = 100,
-            -- symbol_map = { Copilot = "" }
+      symbol_map = { Copilot = "" }
 		}),
 	},
 --[[
@@ -95,6 +96,7 @@ cmp.setup({
 --]]
 	-- Set source precedence
 	sources = cmp.config.sources({
+    { name = "copilot"},
 		{ name = "nvim_lsp" }, -- For nvim-lsp
 		{ name = "luasnip" }, -- For luasnip user
 		{ name = "buffer" }, -- For buffer word completion

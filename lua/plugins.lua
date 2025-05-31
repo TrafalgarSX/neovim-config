@@ -35,11 +35,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	-- LSP manager
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     event = "VeryLazy",
   },
 	{
-    "williamboman/mason-lspconfig.nvim",
+    "mason-org/mason-lspconfig.nvim",
     event = "VeryLazy",
   },
   {
