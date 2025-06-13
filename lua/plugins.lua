@@ -226,10 +226,6 @@ require("lazy").setup({
 			require("config.telescope")
 		end,
 	},
-	{
-		"nvim-telescope/telescope-fzf-native.nvim",
-		build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-	},
 	-- Colorscheme
 	{
 		"tanvirtin/monokai.nvim",
@@ -370,15 +366,6 @@ require("lazy").setup({
 			"mfussenegger/nvim-dap",
 			"nvim-neotest/nvim-nio",
 		},
-	},
-	-- project.nvim
-	{
-		"ahmedkhalf/project.nvim",
-		event = "VimEnter",
-		cmd = "Telescope projects",
-		config = function()
-			require("config.projects")
-		end,
 	},
 	{
 		"stevearc/conform.nvim",
