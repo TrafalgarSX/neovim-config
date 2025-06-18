@@ -15,7 +15,6 @@ require("mason-lspconfig").setup({
   ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls" },
 })
 
-
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp_buf_conf", { clear = true }),
   callback = function(event_context)
@@ -135,17 +134,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
   desc = "Configure buffer keymap and behavior based on LSP",
 })
 
--- Enable lsp servers when they are available
-
 local capabilities = require("lsp_utils").get_default_capabilities()
-
 vim.lsp.config("*", {
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 500,
-  },
+   capabilities = capabilities,
+   flags = {
+     debounce_text_changes = 500,
+   },
 })
-
+-- Enable lsp servers when they are available
 -- A mapping from lsp server name to the executable name
 local enabled_lsp_servers = {
   lua_ls = "lua-language-server",
@@ -158,7 +154,7 @@ local enabled_lsp_servers = {
 }
 
 for server_name, lsp_executable in pairs(enabled_lsp_servers) do
-  if vim.fn.executable(lsp_executable) > 0 then
+  if vim.fn.executable(lsp_executable) ~= 0 then
     vim.lsp.enable(server_name)
   else
     local msg = string.format(

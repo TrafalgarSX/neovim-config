@@ -319,18 +319,6 @@ require("lazy").setup({
     end,
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-    },
-    build = "make tiktoken",        -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-    },
-  },
-  {
     "goolord/alpha-nvim",
     dependencies = { "echasnovski/mini.icons" },
     config = function()
@@ -443,5 +431,57 @@ require("lazy").setup({
     config = true,
     event = "VeryLazy",
   },
-  { 'akinsho/bufferline.nvim', version = "*", dependencies = 'nvim-tree/nvim-web-devicons' }
+  {
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons'
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken",                          -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
+  },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false, -- 永远不要将此值设置为 "*"！永远不要！
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      -- 在此处添加任何选项
+      -- 例如
+      provider = "copilot",
+    },
+    -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
+    build = "make",
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- 对于 Windows
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- 以下依赖项是可选的，
+      "echasnovski/mini.pick",         -- 用于文件选择器提供者 mini.pick
+      "nvim-telescope/telescope.nvim", -- 用于文件选择器提供者 telescope
+      "hrsh7th/nvim-cmp",              -- avante 命令和提及的自动完成
+      "ibhagwan/fzf-lua",              -- 用于文件选择器提供者 fzf
+      "nvim-tree/nvim-web-devicons",   -- 或 echasnovski/mini.icons
+      "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
+      {
+        -- 如果您有 lazy=true，请确保正确设置
+        'MeanderingProgrammer/render-markdown.nvim',
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  }
 })
