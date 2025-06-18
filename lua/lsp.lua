@@ -100,6 +100,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
       client.server_capabilities.hoverProvider = false
     end
 
+    if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+      -- Enable inlay hints if the server supports it.
+      vim.lsp.inlay_hint.enable(true, { buffer = bufnr })
+      map("n", "<space>ih", function()
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+      end, { desc = "Toggle Inlay Hints" })
+    end
+
     -- Auto-format ("lint") on save.
     -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
     if not client:supports_method('textDocument/willSaveWaitUntil')
