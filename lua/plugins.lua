@@ -438,15 +438,15 @@ require("lazy").setup({
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
     dependencies = {
-      { "github/copilot.vim" },                       -- or zbirenbaum/copilot.lua
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+      { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
+      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
     },
-    build = "make tiktoken",                          -- Only on MacOS or Linux
+    build = "make tiktoken",        -- Only on MacOS or Linux
     opts = {
       -- See Configuration section for options
     },
-    -- See Commands section for default commands if you want to lazy load on them
   },
   {
     "yetone/avante.nvim",
@@ -460,7 +460,7 @@ require("lazy").setup({
       provider = "copilot",
     },
     -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
-    build = "make",
+    -- build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- 对于 Windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter",

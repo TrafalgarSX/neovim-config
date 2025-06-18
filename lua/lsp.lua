@@ -75,6 +75,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
       }
     end, { desc = "go to definition" })
     map("n", "<C-]>", vim.lsp.buf.definition)
+    map("n", "gD", vim.lsp.buf.declaration, { desc = "go to declaration" })
+    map("n", "gi", vim.lsp.buf.implementation, { desc = "go to implementation" })
+    map("n", "go", vim.lsp.buf.type_definition, { desc = "go to type definition" })
+    map("n", "gr", vim.lsp.buf.references, { desc = "go to references" })
     map("n", "K", function()
       vim.lsp.buf.hover { border = "single", max_height = 25, max_width = 120 }
     end)
@@ -83,10 +87,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<space>ca", vim.lsp.buf.code_action, { desc = "LSP code action" })
     map("n", "<space>aw", vim.lsp.buf.add_workspace_folder, { desc = "add workspace folder" })
     map("n", "<space>rw", vim.lsp.buf.remove_workspace_folder, { desc = "remove workspace folder" })
+    map("n", "<space>bf", vim.lsp.buf.document_symbol, { desc = "show document symbols(buffer funtions)" })
     map("n", "<space>lw", function()
       vim.print(vim.lsp.buf.list_workspace_folders())
     end, { desc = "list workspace folder" })
 
+    map("n", "<space>dl", '<cmd> lua vim.diagnostic.setloclist()<CR>', { desc = "diagnostic info list" })
+    map("n", "<space>di", '<cmd> lua vim.diagnostic.open_float()<CR>', { desc = "diagnostic info" })
     -- Set some key bindings conditional on server capabilities
     -- Disable ruff hover feature in favor of Pyright
     if client.name == "ruff" then
@@ -136,10 +143,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local capabilities = require("lsp_utils").get_default_capabilities()
 vim.lsp.config("*", {
-   capabilities = capabilities,
-   flags = {
-     debounce_text_changes = 500,
-   },
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 500,
+  },
 })
 -- Enable lsp servers when they are available
 -- A mapping from lsp server name to the executable name
