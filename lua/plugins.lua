@@ -266,16 +266,16 @@ require("lazy").setup({
 
   {
     "folke/trouble.nvim",
-    branch = "dev",
+    branch = "main",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       {
-        "<leader>xx",
+        "<leader>dt",
         "<cmd>Trouble diagnostics toggle<cr>",
         desc = "Diagnostics (Trouble)",
       },
       {
-        "<leader>xX",
+        "<leader>df",
         "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
         desc = "Buffer Diagnostics (Trouble)",
       },
@@ -290,12 +290,12 @@ require("lazy").setup({
         desc = "LSP Definitions / references / ... (Trouble)",
       },
       {
-        "<leader>xL",
+        "<leader>ll",
         "<cmd>Trouble loclist toggle<cr>",
         desc = "Location List (Trouble)",
       },
       {
-        "<leader>xQ",
+        "<leader>ql",
         "<cmd>Trouble qflist toggle<cr>",
         desc = "Quickfix List (Trouble)",
       },
