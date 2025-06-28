@@ -137,20 +137,6 @@ require("lazy").setup({
       require("config.lualine")
     end,
   },
-  -- Markdown support
-  {
-    "preservim/vim-markdown",
-    ft = { "markdown" },
-  },
-  -- Markdown previewer
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
-  },
   -- File explorer
   {
     "nvim-tree/nvim-tree.lua",
@@ -485,5 +471,18 @@ require("lazy").setup({
         ft = { "markdown", "Avante" },
       },
     },
+  },
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*", -- recommended, use latest release instead of latest commit
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("config.obsidian")
+    end
   }
 })
