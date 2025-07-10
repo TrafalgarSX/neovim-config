@@ -13,4 +13,3 @@ else
 
   require('aftercare')
 end
-

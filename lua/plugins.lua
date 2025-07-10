@@ -33,6 +33,12 @@ vim.opt.rtp:prepend(lazypath)
 --           Lazy-load on key mapping
 --     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
+  -- lazy.nvim
+  -- 在这里添加 snacks.nvim 的配置
+  {
+    'folke/snacks.nvim',
+    opts = require("config.snacks"),
+  },
   -- LSP manager
   {
     "mason-org/mason.nvim",
@@ -245,11 +251,6 @@ require("lazy").setup({
       require("im_select").setup({})
     end,
   },
-  -- Improve the performance of big file
-  {
-    "LunarVim/bigfile.nvim",
-  },
-
   {
     "folke/trouble.nvim",
     branch = "main",
@@ -302,13 +303,6 @@ require("lazy").setup({
     "zbirenbaum/copilot-cmp",
     config = function()
       require("copilot_cmp").setup()
-    end,
-  },
-  {
-    "goolord/alpha-nvim",
-    dependencies = { "echasnovski/mini.icons" },
-    config = function()
-      require("alpha").setup(require("alpha.themes.startify").config)
     end,
   },
   -- cmake-tools like vscode
@@ -449,7 +443,7 @@ require("lazy").setup({
     },
     -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
     -- build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- 对于 Windows
+    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- 对于 Windows
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
 
