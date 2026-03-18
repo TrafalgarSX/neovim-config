@@ -65,12 +65,6 @@ require("lazy").setup({
       require("config.nvim-cmp")
     end,
   },
-  -- Code snippet engine
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    version = "v2.*",
-  },
   {
     "rcarriga/nvim-notify",
     opts = {
@@ -174,28 +168,8 @@ require("lazy").setup({
   -- ------------------------------------------------------------------
   {
     "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    -- You can use the VeryLazy event for things that can
-    -- load later and are not important for the initial UI
+    version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- To solve the conflicts with leap.nvim
-        -- See: https://github.com/ggandor/leap.nvim/discussions/59
-        keymaps = {
-          insert = "<C-g>z",
-          insert_line = "gC-ggZ",
-          normal = "gz",
-          normal_cur = "gZ",
-          normal_line = "gzgz",
-          normal_cur_line = "gZgZ",
-          visual = "gz",
-          visual_line = "gZ",
-          delete = "gzd",
-          change = "gzc",
-        },
-      })
-    end,
   },
   -- Better terminal integration
   {
@@ -291,20 +265,20 @@ require("lazy").setup({
       require("config.trouble")
     end,
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("config.copilot")
-    end,
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    config = function()
-      require("copilot_cmp").setup()
-    end,
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("config.copilot")
+  --   end,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   config = function()
+  --     require("copilot_cmp").setup()
+  --   end,
+  -- },
   -- cmake-tools like vscode
   {
     "Civitasv/cmake-tools.nvim",
@@ -418,18 +392,18 @@ require("lazy").setup({
       require("config.bufferline")
     end
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
-      { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-    },
-    build = "make tiktoken",        -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-    },
-  },
+  -- {
+  -- "CopilotC-Nvim/CopilotChat.nvim",
+  -- branch = "main",
+  -- dependencies = {
+  --   { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
+  --   { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+  -- },
+  -- build = "make tiktoken",        -- Only on MacOS or Linux
+  --   opts = {
+  --     -- See Configuration section for options
+  --   },
+  -- },
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -439,7 +413,7 @@ require("lazy").setup({
     opts = {
       -- 在此处添加任何选项
       -- 例如
-      provider = "copilot",
+      -- provider = "copilot",
     },
     -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
     -- build = "make",
@@ -455,7 +429,7 @@ require("lazy").setup({
       "hrsh7th/nvim-cmp",              -- avante 命令和提及的自动完成
       "ibhagwan/fzf-lua",              -- 用于文件选择器提供者 fzf
       "nvim-tree/nvim-web-devicons",   -- 或 echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
+      -- "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
       {
         -- 如果您有 lazy=true，请确保正确设置
         'MeanderingProgrammer/render-markdown.nvim',
