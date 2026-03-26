@@ -1,4 +1,6 @@
-return vim.tbl_deep_extend("force", 
-  require('config.snacks.bigfile'),
-  require('config.snacks.dashboard')
+return vim.tbl_deep_extend(
+	"force",
+	require("config.snacks.bigfile"),
+	require("config.snacks.dashboard"),
+	require("config.snacks.misc")
 )
