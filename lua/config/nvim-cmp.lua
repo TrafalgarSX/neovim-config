@@ -1,8 +1,6 @@
-local luasnip_ok, luasnip = pcall(require, "luasnip")
 local cmp_ok, cmp = pcall(require, "cmp")
-local lspkind_ok, lspkind = pcall(require, "lspkind")
 
-if not luasnip_ok or not cmp_ok or not lspkind_ok then
+if not cmp_ok then
   return
 end
 local has_words_before = function()
@@ -18,12 +16,6 @@ local has_words_before = function()
 end
 --]]
 cmp.setup({
-  snippet = {
-    -- REQUIRED - you must specify a snippet engine
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-    end,
-  },
   mapping = cmp.mapping.preset.insert({
     -- Use <C-b/f> to scroll the docs
     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -37,26 +29,17 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({ select = true }),
 
     -- A super tab
-    -- Source: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings#luasnip
-    ["<Tab>"] = vim.schedule_wrap(function(fallback)
-      -- Hint: if the completion menu is visible select the next one
-      -- if cmp.visible() and has_words_before() then
-      -- if cmp.visible() then
+    -- Source: https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
+    ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() and has_words_before() then
         cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-      elseif luasnip.expand_or_locally_jumpable() then
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- they way you will only jump inside the snippet region
-        luasnip.expand_or_jump()
       else
         fallback()
       end
-    end, { "i", "s" }), -- i - insert mode; s - select mode
+    end, { "i", "s" }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
       else
         fallback()
       end
@@ -65,15 +48,18 @@ cmp.setup({
   -- Let's configure the item's appearance
   -- source: https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance
 
-  formatting = {
-    -- Customize the appearance of the completion menu
-    format = lspkind.cmp_format({
-      -- Show only symbol annotations
-      mode = "symbol",
-      maxwidth = 100,
-      symbol_map = { Copilot = "" }
-    }),
-  },
+  -- formatting = {
+  --   -- Customize the appearance of the completion menu
+  --   format = function(entry, vim_item)
+  --     -- Simple formatting without lspkind
+  --     vim_item.menu = ({
+  --       nvim_lsp = "[LSP]",
+  --       buffer = "[Buffer]",
+  --       path = "[Path]",
+  --     })[entry.source.name]
+  --     return vim_item
+  --   end,
+  -- },
   --[[
     sorting = {
        priority_weight = 2,
@@ -98,7 +84,6 @@ cmp.setup({
   sources = cmp.config.sources({
     -- { name = "copilot"},
     { name = "nvim_lsp" }, -- For nvim-lsp
-    { name = "luasnip" },  -- For luasnip user
     { name = "buffer" },   -- For buffer word completion
     { name = "path" },     -- For path completion
   }),

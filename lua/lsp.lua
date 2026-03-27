@@ -12,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
   -- A list of servers to automatically install if they're not already installed.
-  ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls" },
+  ensure_installed = { "ruff", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -165,7 +165,8 @@ local enabled_lsp_servers = {
   clangd = "clangd",
   cmake = "cmake-language-server",
   ruff = "ruff",
-  basedpyright = "basedpyright",
+  jsonls = "vscode-json-language-server",
+  marksman = "marksman",
 }
 
 for server_name, lsp_executable in pairs(enabled_lsp_servers) do

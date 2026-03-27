@@ -101,11 +101,6 @@ require("lazy").setup({
     },
   },
   -- may be useful
-  -- Git integration
-  {
-    "tpope/vim-fugitive",
-    cond = not is_vscode, -- have bug
-  },
   {
     "keaising/im-select.nvim",
     cond = not is_vscode,

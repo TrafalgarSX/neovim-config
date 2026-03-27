@@ -20,8 +20,12 @@ local options = {
 
   termguicolors = true,   -- set term gui colors (most terminals support this)
   timeoutlen = 300,       -- time to wait for a mapped sequence to complete (in milliseconds)
-  undofile = false,       -- enable persistent undo
+  undofile = true,        -- enable persistent undo
   updatetime = 400,       -- faster completion (4000ms default)
+  sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize", -- better session management
+  foldmethod = "expr",    -- use expression for folding
+  foldexpr = "nvim_treesitter#foldexpr()", -- use treesitter for folding
+  foldlevel = 99,         -- start with all folds open
   writebackup = true,     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
   cursorline = true,      -- highlight the current line
   number = true,          -- set numbered lines
