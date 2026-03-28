@@ -34,13 +34,6 @@ vim.opt.rtp:prepend(lazypath)
 --           Lazy-load on key mapping
 --     opts: The table will be passed to the require(...).setup(opts)
 require("lazy").setup({
-  {
-    "smoka7/hop.nvim",
-    version = "*",
-    opts = {
-      keys = "etovxqpdygfblzhckisuran",
-    },
-  },
   -- Make surrounding easier
   -- ------------------------------------------------------------------
   -- Old text                    Command         New text
