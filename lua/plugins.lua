@@ -84,6 +84,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
 		config = function()
 			require("config.nvim-treesitter")
@@ -267,13 +268,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"stevearc/conform.nvim",
-		opts = {},
-		config = function()
-			require("config.conform")
-		end,
-	},
-	{
 		"mfussenegger/nvim-dap-python",
 		config = function()
 			require("config.dappy")
@@ -395,6 +389,7 @@ require("lazy").setup({
 	{
 		"obsidian-nvim/obsidian.nvim",
 		version = "*", -- recommended, use latest release instead of latest commit
+		ft = { "markdown", "quarto" },
 		config = function()
 			require("config.obsidian")
 		end,

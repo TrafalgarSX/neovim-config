@@ -76,17 +76,8 @@ require("lazy").setup({
 	-- may be useful
 	{
 		"keaising/im-select.nvim",
-		cond = not is_vscode,
 		config = function()
 			require("im_select").setup({})
 		end,
-	},
-	{
-		"stevearc/conform.nvim",
-		opts = {},
-		cond = not is_vscode,
-		config = function()
-			require("config.conform")
-		end,
-	},
+	} ,
 })
