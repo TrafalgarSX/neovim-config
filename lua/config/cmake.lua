@@ -5,14 +5,14 @@ end
 
 local osys = require("cmake-tools.osys")
 
-local kits_path;
+local kits_path
 if osys.iswin32 then
   kits_path = "C:/Users/guoya/AppData/Local/CMakeTools/cmake-tools-kits.json"
 else
   kits_path = "/home/trafalgar/.local/share/CMakeTools/cmake-tools-kits.json"
 end
 
-local cmake_toolchain_path;
+local cmake_toolchain_path
 local vcpkg_root = vim.fn.getenv("VCPKG_ROOT")
 if vcpkg_root ~= nil and vcpkg_root ~= "" then
   -- If VCPKG_ROOT is set, use it to set the toolchain path

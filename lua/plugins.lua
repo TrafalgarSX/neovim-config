@@ -397,25 +397,11 @@ require("lazy").setup({
       "ibhagwan/fzf-lua",           -- 用于文件选择器提供者 fzf
       "nvim-tree/nvim-web-devicons", -- 或 echasnovski/mini.icons
       -- "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
-      {
-        -- 如果您有 lazy=true，请确保正确设置
-        "MeanderingProgrammer/render-markdown.nvim",
-        opts = {
-          file_types = { "markdown", "Avante" },
-        },
-        ft = { "markdown", "Avante" },
-      },
     },
   },
   {
-    "epwalsh/obsidian.nvim",
+    "obsidian-nvim/obsidian.nvim",
     version = "*", -- recommended, use latest release instead of latest commit
-    lazy = true,
-    ft = "markdown",
-    dependencies = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-    },
     config = function()
       require("config.obsidian")
     end,
