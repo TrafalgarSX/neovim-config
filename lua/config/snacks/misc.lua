@@ -1,12 +1,13 @@
 return {
-	explorer = { enabled = true },
+	bufdelete = { enabled = true },
+	explorer = { enabled = false },
 	indent = { enabled = true },
 	input = { enabled = true },
-	picker = { enabled = true },
+	picker = { enabled = false },
 	notifier = { enabled = true, timeout = 3000 },
 	quickfile = { enabled = true },
-	scope = { enabled = true },
-	scroll = { enabled = true },
+	scope = { enabled = true, exclude = { "markdown" } },
+	scroll = { enabled = false },
 	statuscolumn = { enabled = true },
 	words = { enabled = true },
 	-- 4. 样式配置：让通知看起来更现代

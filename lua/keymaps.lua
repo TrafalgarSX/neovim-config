@@ -63,6 +63,7 @@ if not is_vscode then
 	-- For nvim-tree.lua
 	-- default leader key: \
 	keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+	keymap("n", "<leader>bd", ":lua Snacks.bufdelete()<CR>", opts)
 
 	-- For nvim-treesitter
 	-- 1. Press `gss` to intialize selection. (ss = start selection)
