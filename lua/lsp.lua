@@ -110,6 +110,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Auto-format ("lint") on save.
 		-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
+        --[[ 使用 conform 替代 lsp formatting，前者异步会更快一些，注释掉 lsp formatting 的自动保存功能
 		if
 			not client:supports_method("textDocument/willSaveWaitUntil")
 			and client:supports_method("textDocument/formatting")
@@ -122,6 +123,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end
+        --]]
 
 		-- Uncomment code below to enable inlay hint from language server, some LSP server supports inlay hint,
 		-- but disable this feature by default, so you may need to enable inlay hint in the LSP server config.

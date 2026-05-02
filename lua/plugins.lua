@@ -269,6 +269,7 @@ require("lazy").setup({
 	},
 	{
 		"mfussenegger/nvim-dap-python",
+		lazy = true,
 		config = function()
 			require("config.dappy")
 		end,
@@ -392,6 +393,13 @@ require("lazy").setup({
 		ft = { "markdown", "quarto" },
 		config = function()
 			require("config.obsidian")
+		end,
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {},
+		config = function()
+			require("config.conform")
 		end,
 	},
 	{

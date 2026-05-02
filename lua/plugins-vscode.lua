@@ -1,6 +1,5 @@
 -- Install Lazy.nvim automatically if it's not installed(Bootstraping)
 -- Hint: string concatenation is done by `..`
-local is_vscode = vim.g.vscode == true
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -73,11 +72,17 @@ require("lazy").setup({
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
 	},
-	-- may be useful
 	{
 		"keaising/im-select.nvim",
 		config = function()
 			require("im_select").setup({})
 		end,
-	} ,
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {},
+		config = function()
+			require("config.conform")
+		end,
+	},
 })
