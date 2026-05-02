@@ -2,14 +2,14 @@
 -- Hint: string concatenation is done by `..`
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -247,66 +247,66 @@ require("lazy").setup({
     end,
   },
 
-  -- Debugging
-  {
-    "mfussenegger/nvim-dap",
-    lazy = true,
-    config = function()
-      require("config.dap")
-    end,
-  },
+	-- Debugging
+	{
+		"mfussenegger/nvim-dap",
+		lazy = true,
+		config = function()
+			require("config.dap")
+		end,
+	},
 
-  -- Debugger user interface
-  {
-    "rcarriga/nvim-dap-ui",
-    lazy = true,
-    dependencies = {
-      "mfussenegger/nvim-dap",
-      "nvim-neotest/nvim-nio",
-    },
-  },
-  {
-    "stevearc/conform.nvim",
-    opts = {},
-    config = function()
-      require("config.conform")
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    config = function()
-      require("config.dappy")
-    end,
-  },
-  {
-    "stevearc/aerial.nvim",
-    event = "VeryLazy",
-    opts = {},
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  -- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
-  {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-  {
-    "sindrets/diffview.nvim",
-    event = "VeryLazy",
-  },
-  {
-    -- easymotion like
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {},
+	-- Debugger user interface
+	{
+		"rcarriga/nvim-dap-ui",
+		lazy = true,
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+		},
+	},
+	{
+		"stevearc/conform.nvim",
+		opts = {},
+		config = function()
+			require("config.conform")
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		config = function()
+			require("config.dappy")
+		end,
+	},
+	{
+		"stevearc/aerial.nvim",
+		event = "VeryLazy",
+		opts = {},
+		-- Optional dependencies
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	-- add this to your lua/plugins.lua, lua/plugins/init.lua,  or the file you keep your other plugins:
+	{
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
+		},
+		config = function()
+			require("Comment").setup()
+		end,
+	},
+	{
+		"sindrets/diffview.nvim",
+		event = "VeryLazy",
+	},
+	{
+		-- easymotion like
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {},
     -- stylua: ignore
     keys = {
       { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
@@ -315,112 +315,112 @@ require("lazy").setup({
       { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
-    config = function()
-      require("config.flash")
-    end,
-  },
-  {
-    "mikavilpas/yazi.nvim",
-    event = "VeryLazy",
-    opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
-      keymaps = {
-        show_help = "<f1>",
-      },
-    },
-  },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
+		config = function()
+			require("config.flash")
+		end,
+	},
+	{
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- if you want to open yazi instead of netrw, see below for more info
+			open_for_directories = false,
+			keymaps = {
+				show_help = "<f1>",
+			},
+		},
+	},
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
 
-      -- Only one of these is needed.
-      "nvim-telescope/telescope.nvim", -- optional
-      "ibhagwan/fzf-lua",           -- optional
-      "echasnovski/mini.pick",      -- optional
-    },
-    config = true,
-    event = "VeryLazy",
-  },
-  {
-    "akinsho/bufferline.nvim",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("config.bufferline")
-    end,
-  },
-  -- {
-  -- "CopilotC-Nvim/CopilotChat.nvim",
-  -- branch = "main",
-  -- dependencies = {
-  --   { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
-  --   { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
-  -- },
-  -- build = "make tiktoken",        -- Only on MacOS or Linux
-  --   opts = {
-  --     -- See Configuration section for options
-  --   },
-  -- },
-  {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    version = false, -- 永远不要将此值设置为 "*"！永远不要！
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      -- 在此处添加任何选项
-      -- 例如
-      -- provider = "copilot",
-    },
-    -- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
-    -- build = "make",
-    -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- 对于 Windows
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim", -- optional
+			"ibhagwan/fzf-lua", -- optional
+			"echasnovski/mini.pick", -- optional
+		},
+		config = true,
+		event = "VeryLazy",
+	},
+	{
+		"akinsho/bufferline.nvim",
+		dependencies = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("config.bufferline")
+		end,
+	},
+	-- {
+	-- "CopilotC-Nvim/CopilotChat.nvim",
+	-- branch = "main",
+	-- dependencies = {
+	--   { "zbirenbaum/copilot.lua" }, -- or github/opilot.vim
+	--   { "nvim-lua/plenary.nvim" },  -- for curl, log wrapper
+	-- },
+	-- build = "make tiktoken",        -- Only on MacOS or Linux
+	--   opts = {
+	--     -- See Configuration section for options
+	--   },
+	-- },
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		version = false, -- 永远不要将此值设置为 "*"！永远不要！
+		---@module 'avante'
+		---@type avante.Config
+		opts = {
+			-- 在此处添加任何选项
+			-- 例如
+			-- provider = "copilot",
+		},
+		-- 如果您想从源代码构建，请执行 `make BUILD_FROM_SOURCE=true`
+		-- build = "make",
+		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false", -- 对于 Windows
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
 
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      --- 以下依赖项是可选的，
-      "echasnovski/mini.pick",      -- 用于文件选择器提供者 mini.pick
-      "nvim-telescope/telescope.nvim", -- 用于文件选择器提供者 telescope
-      "hrsh7th/nvim-cmp",           -- avante 命令和提及的自动完成
-      "ibhagwan/fzf-lua",           -- 用于文件选择器提供者 fzf
-      "nvim-tree/nvim-web-devicons", -- 或 echasnovski/mini.icons
-      -- "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
-    },
-  },
-  {
-    "obsidian-nvim/obsidian.nvim",
-    version = "*", -- recommended, use latest release instead of latest commit
-    config = function()
-      require("config.obsidian")
-    end,
-  },
-  {
-    "olimorris/persisted.nvim",
-    lazy = false,
-    config = function()
-      local persisted = require("persisted")
-      persisted.setup({
-        should_save = function()
-          -- Ref: https://github.com/folke/persistence.nvim/blob/166a79a55bfa7a4db3e26fc031b4d92af71d0b51/lua/persistence/init.lua#L46
-          local bufs = vim.tbl_filter(function(b)
-            if
-                vim.bo[b].buftype ~= ""
-                or vim.tbl_contains({ "gitcommit", "gitrebase", "jj" }, vim.bo[b].filetype)
-            then
-              return false
-            end
-            return vim.api.nvim_buf_get_name(b) ~= ""
-          end, vim.api.nvim_list_bufs())
-          if #bufs < 1 then
-            return false
-          end
-          return true
-        end,
-      })
-    end,
-  },
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- 以下依赖项是可选的，
+			"echasnovski/mini.pick", -- 用于文件选择器提供者 mini.pick
+			"nvim-telescope/telescope.nvim", -- 用于文件选择器提供者 telescope
+			"hrsh7th/nvim-cmp", -- avante 命令和提及的自动完成
+			"ibhagwan/fzf-lua", -- 用于文件选择器提供者 fzf
+			"nvim-tree/nvim-web-devicons", -- 或 echasnovski/mini.icons
+			-- "zbirenbaum/copilot.lua",        -- 用于 providers='copilot'
+		},
+	},
+	{
+		"obsidian-nvim/obsidian.nvim",
+		version = "*", -- recommended, use latest release instead of latest commit
+		config = function()
+			require("config.obsidian")
+		end,
+	},
+	{
+		"olimorris/persisted.nvim",
+		lazy = false,
+		config = function()
+			local persisted = require("persisted")
+			persisted.setup({
+				should_save = function()
+					-- Ref: https://github.com/folke/persistence.nvim/blob/166a79a55bfa7a4db3e26fc031b4d92af71d0b51/lua/persistence/init.lua#L46
+					local bufs = vim.tbl_filter(function(b)
+						if
+							vim.bo[b].buftype ~= ""
+							or vim.tbl_contains({ "gitcommit", "gitrebase", "jj" }, vim.bo[b].filetype)
+						then
+							return false
+						end
+						return vim.api.nvim_buf_get_name(b) ~= ""
+					end, vim.api.nvim_list_bufs())
+					if #bufs < 1 then
+						return false
+					end
+					return true
+				end,
+			})
+		end,
+	},
 })
