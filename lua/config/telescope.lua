@@ -19,4 +19,4 @@ vim.keymap.set("n", "<leader>fr", function() -- fc = find by command
 end)
 
 -- Telescope projects
-vim.keymap.set("n", "<leader>fp", ":Telescope projects<CR>", {})
+vim.keymap.set("n", "<leader>fp", ":Telescope persisted<CR>", {})
