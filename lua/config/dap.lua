@@ -206,7 +206,6 @@ local dap_breakpoint = {
 	rejected = {
 		text = "",
 		texthl = "DapBreakpoint",
-		texthl = "DapBreakpint",
 		linehl = "DapBreakpoint",
 		numhl = "DapBreakpoint",
 	},
