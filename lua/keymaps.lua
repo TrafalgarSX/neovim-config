@@ -7,12 +7,10 @@ local opts = { noremap = true, silent = true }
 local is_vscode = vim.g.vscode == true
 local keymap = vim.keymap.set
 
---[[
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-]]
 
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
@@ -80,7 +78,7 @@ if not is_vscode then
 	keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
 
 	-- for lsp
-	keymap("n", "<space>i", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
+	keymap("n", "<space>ie", ":lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
 
 	-- for yazi.nvim
 	keymap("n", "<space>-", ":Yazi<CR>", opts)
