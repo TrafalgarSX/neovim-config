@@ -34,6 +34,8 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 
+keymap("n", "<leader>qa", ":qa<CR>", opts)
+
 -----------------
 -- Visual mode --
 -----------------
