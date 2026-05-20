@@ -116,17 +116,16 @@ require("lazy").setup({
 			require("config.nvim-tree")
 		end,
 	},
-	-- Make surrounding easier
-	-- ------------------------------------------------------------------
-	-- Old text                    Command         New text
-	-- ------------------------------------------------------------------
-	-- surr*ound_words             gziw)           (surround_words)
-	-- *make strings               gz$"            "make strings"
-	-- [delete ar*ound me!]        gzd]            delete around me!
-	-- remove <b>HTML t*ags</b>    gzdt            remove HTML tags
-	-- 'change quot*es'            gzc'"           "change quotes"
-	-- delete(functi*on calls)     gzcf            function calls
-	-- ------------------------------------------------------------------
+	--     Old text                    Command         New text
+	-- --------------------------------------------------------------------------------
+	--     surr*ound_words             ysiw)           (surround_words)
+	--     surr*ound_words             ysiw(           ( surround_words )
+	--     *make strings               ys$"            "make strings"
+	--     [delete ar*ound me!]        ds]             delete around me!
+	--     remove <b>HTML t*ags</b>    dst             remove HTML tags
+	--     'change quot*es'            cs'"            "change quotes"
+	--     <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+	--     delete(functi*on calls)     dsf             function calls
 	{
 		"kylechui/nvim-surround",
 		version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features

@@ -4,7 +4,6 @@ local opts = { noremap = true, silent = true }
 -- local keydel = vim.keymap.del
 --
 -- Shorten function name
-local is_vscode = vim.g.vscode == true
 local keymap = vim.keymap.set
 
 --Remap space as leader key
@@ -59,7 +58,42 @@ keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 -----------------
 keymap("i", "<C-;>", "<End>", opts)
 
-if not is_vscode then
+if vim.g.vscode then
+	-- call vscode commands from neovim
+	-- general keymaps
+	keymap({ "n", "i" }, "<C-`>", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
+	-- 格式化当前文件
+	keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+	-- 打开 VSCode 的右侧的文件浏览
+	keymap({ "n", "v" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>")
+	-- 快速搜索文件，VSCode 中是 Ctrl+p
+	keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+	-- VSCode 中的 ctrl+shiflt+p 功能，打开 VSCode 的功能面板
+	keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
+	-- 切换当前代码行的断点
+	keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+	-- 打开 VSCode 的搜索框
+	keymap({ "n", "v" }, "<leader>rg", "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>")
+	-- pin 当前打开的文件
+	keymap({ "n", "v" }, "<leader>pi", "<cmd>lua require('vscode').action('workbench.action.pinEditor')<CR>")
+	-- unpin 当前打开的文件
+	keymap({ "n", "v" }, "<leader>up", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>")
+	-- 使用 explorer 打开当前文件所在目录
+	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>")
+	-- 显示当前光标所在项的详细信息悬浮提示
+	keymap({ "n", "v" }, "<leader>if", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
+	-- 显示快速修复列表
+	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
+
+	keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
+	keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
+	keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
+
+	-- project manager keymaps
+	keymap({ "n", "v" }, "<leader>ps", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>")
+	keymap({ "n", "v" }, "<leader>pa", "<cmd>lua require('vscode').action('projectManager.listProjectsNewWindow')<CR>")
+	keymap({ "n", "v" }, "<leader>pe", "<cmd>lua require('vscode').action('projectManager.editProjects')<CR>")
+else
 	-- For nvim-tree.lua
 	-- default leader key: \
 	keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
