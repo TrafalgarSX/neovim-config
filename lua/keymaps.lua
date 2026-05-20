@@ -80,14 +80,17 @@ if vim.g.vscode then
 	keymap({ "n", "v" }, "<leader>up", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>")
 	-- 使用 explorer 打开当前文件所在目录
 	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>")
-	-- 显示当前光标所在项的详细信息悬浮提示
-	keymap({ "n", "v" }, "<leader>if", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
 	-- 显示快速修复列表
 	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
+	keymap(
+		{ "n", "v" },
+		"<leader>fw",
+		"<cmd>lua require('vscode').action('workbench.action.findInFiles', {args = { query = vim.fn.expand('<cword>') }})<CR>"
+	)
 
 	keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
 	keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
-	keymap({ "n", "v" }, "<leader>pr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
+	keymap({ "n", "v" }, "<leader>cr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
 
 	-- project manager keymaps
 	keymap({ "n", "v" }, "<leader>ps", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>")
