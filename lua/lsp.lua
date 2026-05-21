@@ -12,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
 	-- A list of servers to automatically install if they're not already installed.
-	ensure_installed = { "ruff", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
+	ensure_installed = { "pyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -110,7 +110,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Auto-format ("lint") on save.
 		-- Usually not needed if server supports "textDocument/willSaveWaitUntil".
-        --[[ 使用 conform 替代 lsp formatting，前者异步会更快一些，注释掉 lsp formatting 的自动保存功能
+		--[[ 使用 conform 替代 lsp formatting，前者异步会更快一些，注释掉 lsp formatting 的自动保存功能
 		if
 			not client:supports_method("textDocument/willSaveWaitUntil")
 			and client:supports_method("textDocument/formatting")
