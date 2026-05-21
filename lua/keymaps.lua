@@ -70,8 +70,6 @@ if vim.g.vscode then
 	keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
 	-- VSCode 中的 ctrl+shiflt+p 功能，打开 VSCode 的功能面板
 	keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
-	-- 切换当前代码行的断点
-	keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
 	-- 打开 VSCode 的搜索框
 	keymap({ "n", "v" }, "<leader>rg", "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>")
 	-- pin 当前打开的文件
@@ -80,14 +78,22 @@ if vim.g.vscode then
 	keymap({ "n", "v" }, "<leader>up", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>")
 	-- 使用 explorer 打开当前文件所在目录
 	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>")
-	-- 显示快速修复列表
-	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
+	-- 隐藏或显示 sidebar，即转换 sidebar 的可见性
+	keymap(
+		{ "n", "v" },
+		"<leader>hs",
+		"<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>"
+	)
 	-- 在搜索框里搜索当前光标下的词（word）
 	keymap(
 		{ "n", "v" },
 		"<leader>fw",
 		"<cmd>lua require('vscode').action('workbench.action.findInFiles', {args = { query = vim.fn.expand('<cword>') }})<CR>"
 	)
+	-- 切换当前代码行的断点
+	keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+	-- 显示快速修复列表
+	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
 
 	keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
 	keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
