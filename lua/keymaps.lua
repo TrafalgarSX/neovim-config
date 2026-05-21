@@ -82,6 +82,7 @@ if vim.g.vscode then
 	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>")
 	-- 显示快速修复列表
 	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
+	-- 在搜索框里搜索当前光标下的词（word）
 	keymap(
 		{ "n", "v" },
 		"<leader>fw",
