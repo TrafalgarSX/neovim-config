@@ -1,15 +1,17 @@
-require('options')
+require("options")
 
-require('keymaps')
+require("keymaps")
 
 if vim.g.vscode then
-  require('plugins-vscode')
+	require("plugins-vscode")
 else
-  require('plugins')
+	require("plugins")
 
-  require('colorscheme')
+	require("colorscheme")
 
-  require('lsp')
+	require("lspconfigs")
 
-  require('aftercare')
+	require("lsp")
+
+	require("aftercare")
 end

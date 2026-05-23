@@ -12,7 +12,7 @@ require("mason").setup({
 
 require("mason-lspconfig").setup({
 	-- A list of servers to automatically install if they're not already installed.
-	ensure_installed = { "pyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
+	ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -94,16 +94,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		map("n", "<space>dl", "<cmd> lua vim.diagnostic.setloclist()<CR>", { desc = "diagnostic info list" })
 		map("n", "<space>di", "<cmd> lua vim.diagnostic.open_float()<CR>", { desc = "diagnostic info" })
-		-- Set some key bindings conditional on server capabilities
-		-- Disable ruff hover feature in favor of Pyright
-		if client.name == "ruff" then
-			client.server_capabilities.hoverProvider = false
-		end
 
 		if client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
 			-- Enable inlay hints if the server supports it.
 			vim.lsp.inlay_hint.enable(true, { buffer = bufnr })
-			map("n", "<space>ih", function()
+			map("n", "<leader>ih", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 			end, { desc = "Toggle Inlay Hints" })
 		end
@@ -123,7 +118,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				end,
 			})
 		end
-        --]]
+    --]]
 
 		-- Uncomment code below to enable inlay hint from language server, some LSP server supports inlay hint,
 		-- but disable this feature by default, so you may need to enable inlay hint in the LSP server config.
@@ -154,12 +149,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = require("lsp_utils").get_default_capabilities()
+
+-- disable auto highlight from lsp capabilities for colorcode after nvim 0.12
+capabilities.textDocument.colorProvider = nil -- disable server color highlighter
+
+-- vim.lsp.config is extension of vim.lsp.ClientConfig
+-- but root_dir must be set by independent lsp server
 vim.lsp.config("*", {
+	root_dir = function(bufnr, cb)
+		local root = vim.fs.root(bufnr, { ".git" }) or vim.fn.expand("%:p:h")
+		-- root directory must be transferred to callback function to recognize
+		cb(root)
+	end,
 	capabilities = capabilities,
 	flags = {
 		debounce_text_changes = 500,
 	},
 })
+
 -- Enable lsp servers when they are available
 -- A mapping from lsp server name to the executable name
 local enabled_lsp_servers = {
@@ -168,6 +175,7 @@ local enabled_lsp_servers = {
 	ts_ls = "typescript-language-server",
 	clangd = "clangd",
 	cmake = "cmake-language-server",
+	basedpyright = "basedpyright-langserver",
 	ruff = "ruff",
 	jsonls = "vscode-json-language-server",
 	marksman = "marksman",
