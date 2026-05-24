@@ -230,20 +230,14 @@ require("lazy").setup({
 			require("config.trouble")
 		end,
 	},
-	-- {
-	--   "zbirenbaum/copilot.lua",
-	--   cmd = "Copilot",
-	--   event = "InsertEnter",
-	--   config = function()
-	--     require("config.copilot")
-	--   end,
-	-- },
-	-- {
-	--   "zbirenbaum/copilot-cmp",
-	--   config = function()
-	--     require("copilot_cmp").setup()
-	--   end,
-	-- },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("config.copilot")
+		end,
+	},
 	-- cmake-tools like vscode
 	{
 		"Civitasv/cmake-tools.nvim",
