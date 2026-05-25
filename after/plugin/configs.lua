@@ -1,3 +1,5 @@
+if vim.g.vscode then return end
+
 -- Plugin configurations (auto-sourced by Neovim after vim.pack.add() in init.lua)
 
 -- UI

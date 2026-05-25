@@ -1,3 +1,5 @@
+if vim.g.vscode then return end
+
 local is_ok, cmp = pcall(require, "blink.cmp")
 if not is_ok then
 	return
