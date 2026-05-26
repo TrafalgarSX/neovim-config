@@ -1,60 +1,65 @@
 if vim.g.vscode then return end
 
--- Plugin configurations (auto-sourced by Neovim after vim.pack.add() in init.lua)
+-- ── Eager setup: needed for the initial screen / first keystroke ──
 
--- UI
+-- Dashboard (must render first)
 require("snacks").setup(require("config.snacks"))
-require("config.lualine")
-require("config.nvim-tree")
-require("config.bufferline")
-require("config.telescope")
-require("config.trouble")
 
--- Editing
+-- Statusline / tabline (visible immediately)
+require("config.lualine")
+require("config.bufferline")
+
+-- Editing (needed before first keystroke)
 require("config.nvim-autopairs")
 require("config.flash")
 require("config.gitsigns")
 
--- Treesitter
+-- Treesitter (syntax highlighting from first buffer)
 require("config.nvim-treesitter")
 require("config.nvim-treesitter-textobjects")
 
--- Terminal
-require("config.toggleterm")
+-- Diagnostics
+require("config.trouble")
 
--- LSP / Completion
-require("config.copilot")
-require("config.cmake")
-
--- Debugging
-require("config.dap")
-require("config.dappy")
-
--- Git
-require("neogit").setup({})
-
--- Misc
+-- Formatting
 require("config.conform")
-require("config.persisted")
-require("config.obsidian")
 
--- Plugins with no separate config module
+-- Lightweight, no-setup plugins
 require("Comment").setup()
 require("im_select").setup({})
-require("aerial").setup({})
-require("yazi").setup({
-	open_for_directories = false,
-	keymaps = {
-		show_help = "<f1>",
-	},
-})
-require("img-clip").setup({
-	default = {
-		embed_image_as_base64 = false,
-		prompt_for_file_name = false,
-		drag_and_drop = {
-			insert_mode = true,
+
+-- ── Deferred setup: not needed for the dashboard ──
+vim.schedule(function()
+	-- UI (file tree, fuzzy finder)
+	require("config.nvim-tree")
+	require("config.telescope")
+    
+    -- Terminal
+    require("config.toggleterm")
+
+	-- Completion / AI
+	require("config.copilot")
+
+	-- Project-specific tools
+	require("config.cmake")
+	require("config.dap")
+	require("config.dappy")
+	require("neogit").setup({})
+	require("config.persisted")
+	require("config.obsidian")
+
+	-- Misc
+	require("aerial").setup({})
+	require("yazi").setup({
+		open_for_directories = false,
+		keymaps = { show_help = "<f1>" },
+	})
+	require("img-clip").setup({
+		default = {
+			embed_image_as_base64 = false,
+			prompt_for_file_name = false,
+			drag_and_drop = { insert_mode = true },
+			use_absolute_path = true,
 		},
-		use_absolute_path = true,
-	},
-})
+	})
+end)

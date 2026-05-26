@@ -1,18 +1,18 @@
 -- Note: The order matters: require("mason") -> require("mason-lspconfig") -> require("lspconfig")
 
 require("mason").setup({
-	ui = {
-		icons = {
-			package_installed = "✓",
-			package_pending = "➜",
-			package_uninstalled = "✗",
-		},
-	},
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗",
+        },
+    },
 })
 
 require("mason-lspconfig").setup({
-	-- A list of servers to automatically install if they're not already installed.
-	ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
+    -- A list of servers to automatically install if they're not already installed.
+    ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {

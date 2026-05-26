@@ -149,10 +149,13 @@ vim.pack.add({
 })
 
 -- ── Early configuration (before after/plugin/ scripts) ────────────
-require("lsp_utils")
-require("lspconfigs")
-require("lsp")
 require("colorscheme")
+-- Mason + LSP 延迟到 UI 渲染后加载
+vim.schedule(function()
+  require("lsp_utils")
+  require("lspconfigs")
+  require("lsp")
+end)
 
 -- Diagnostic UI (sign symbols in the gutter)
 vim.diagnostic.config({
