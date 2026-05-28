@@ -45,9 +45,18 @@ vim.api.nvim_create_autocmd("PackChanged", {
 			if ok and type(blink.build) == "function" then
 				blink.build():wait(60000)
 			end
-		elseif name == "avante.nvim" and kind == "install" then
+		-- elseif name == "avante.nvim" and kind == "install" then
+		elseif name == "avante.nvim" and is_install then
 			if vim.fn.has("win32") == 1 then
-				vim.fn.system({ "powershell", "-ExecutionPolicy", "Bypass", "-File", "Build.ps1", "-BuildFromSource", "false" })
+				vim.fn.system({
+					"powershell",
+					"-ExecutionPolicy",
+					"Bypass",
+					"-File",
+					"Build.ps1",
+					"-BuildFromSource",
+					"false",
+				})
 			else
 				vim.fn.system({ "make" })
 			end
@@ -55,8 +64,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 			ensure_active()
 			local fzf_dir = vim.fn.stdpath("data") .. "/pack/core/opt/telescope-fzf-native.nvim"
 			if vim.fn.has("win32") == 1 then
-				vim.fn.system({ "cmake", "-S", fzf_dir, "-B", fzf_dir .. "/build",
-					"-DCMAKE_BUILD_TYPE=Release" })
+				vim.fn.system({ "cmake", "-S", fzf_dir, "-B", fzf_dir .. "/build", "-DCMAKE_BUILD_TYPE=Release" })
 				vim.fn.system({ "cmake", "--build", fzf_dir .. "/build", "--config", "Release" })
 			else
 				vim.fn.system({ "make", "-C", fzf_dir })
@@ -111,9 +119,6 @@ vim.pack.add({
 	"https://github.com/numToStr/Comment.nvim",
 	"https://github.com/folke/flash.nvim",
 
-	-- Terminal
-	{ src = "https://github.com/akinsho/toggleterm.nvim", version = vim.version.range("*") },
-
 	-- Diagnostics / Trouble
 	{ src = "https://github.com/folke/trouble.nvim", version = "main" },
 
@@ -130,10 +135,8 @@ vim.pack.add({
 	"https://github.com/nvim-neotest/nvim-nio",
 
 	-- Misc
-	"https://github.com/stevearc/aerial.nvim",
+	"https://github.com/stevearc/aerial.nvim", -- code outline
 	"https://github.com/mikavilpas/yazi.nvim",
-	"https://github.com/ibhagwan/fzf-lua",
-	"https://github.com/echasnovski/mini.pick",
 	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", version = vim.version.range("*") },
 	{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
 	"https://github.com/olimorris/persisted.nvim",
@@ -152,9 +155,9 @@ vim.pack.add({
 require("colorscheme")
 -- Mason + LSP 延迟到 UI 渲染后加载
 vim.schedule(function()
-  require("lsp_utils")
-  require("lspconfigs")
-  require("lsp")
+	require("lsp_utils")
+	require("lspconfigs")
+	require("lsp")
 end)
 
 -- Diagnostic UI (sign symbols in the gutter)

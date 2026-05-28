@@ -1,4 +1,6 @@
-if vim.g.vscode then return end
+if vim.g.vscode then
+	return
+end
 
 -- ── Eager setup: needed for the initial screen / first keystroke ──
 
@@ -33,9 +35,6 @@ vim.schedule(function()
 	-- UI (file tree, fuzzy finder)
 	require("config.nvim-tree")
 	require("config.telescope")
-    
-    -- Terminal
-    require("config.toggleterm")
 
 	-- Completion / AI
 	require("config.copilot")

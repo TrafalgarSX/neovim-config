@@ -67,7 +67,9 @@ if not vim.g.vscode then
 	vim.g.loaded_netrwPlugin = 1
 end
 
+-- 平台相关设置
 if vim.fn.has("win32") == 1 then
+	vim.o.shell = "pwsh.exe"
 	vim.g.python3_host_prog = "C:/Users/guoya/scoop/apps/python/current/python.exe"
 elseif vim.fn.has("unix") == 1 then
 	vim.g.python3_host_prog = "/usr/bin/python3"
