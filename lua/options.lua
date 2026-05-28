@@ -10,7 +10,7 @@ local options = {
 	incsearch = true, -- search as characters are entered
 	hlsearch = true, -- highlight all matches on previous search pattern
 	ignorecase = true, -- ignore case in search patterns
-	smartcase = true, -- but make it case sensitive if an uppercase is entered	pumheight = 10, -- pop up menu height
+	smartcase = true, -- but make it case sensitive if an uppercase is entered
 	showmode = false, -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 2, -- always show tabs
 	smartindent = true, -- make indenting smarter again
@@ -50,6 +50,8 @@ for k, v in pairs(options) do
 end
 
 vim.opt.iskeyword:append("-") -- 连字符连接的单词会被视为一个单词
+-- Disable built-in ftplugin mappings to avoid conflicts with nvim-treesitter-textobjects
+vim.g.no_plugin_maps = true
 -- 禁用自动注释
 vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Rid auto comment for new string",
