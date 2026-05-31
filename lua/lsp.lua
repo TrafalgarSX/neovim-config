@@ -1,18 +1,18 @@
 -- Note: The order matters: require("mason") -> require("mason-lspconfig") -> require("lspconfig")
 
 require("mason").setup({
-    ui = {
-        icons = {
-            package_installed = "✓",
-            package_pending = "➜",
-            package_uninstalled = "✗",
-        },
-    },
+	ui = {
+		icons = {
+			package_installed = "✓",
+			package_pending = "➜",
+			package_uninstalled = "✗",
+		},
+	},
 })
 
 require("mason-lspconfig").setup({
-    -- A list of servers to automatically install if they're not already installed.
-    ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
+	-- A list of servers to automatically install if they're not already installed.
+	ensure_installed = { "ruff", "basedpyright", "lua_ls", "bashls", "clangd", "ts_ls", "jsonls", "marksman" },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -149,9 +149,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = require("lsp_utils").get_default_capabilities()
-
--- disable auto highlight from lsp capabilities for colorcode after nvim 0.12
-capabilities.textDocument.colorProvider = nil -- disable server color highlighter
 
 -- vim.lsp.config is extension of vim.lsp.ClientConfig
 -- but root_dir must be set by independent lsp server

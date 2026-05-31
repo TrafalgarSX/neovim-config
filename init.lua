@@ -17,7 +17,7 @@ if vim.g.vscode then
 	require("Comment").setup()
 	require("im_select").setup({})
 	require("config.conform")
-	require("flash").setup()
+	require("config.flash")
 	return -- <-- everything below is skipped in VSCode
 end
 
@@ -74,7 +74,9 @@ vim.api.nvim_create_autocmd("PackChanged", {
 	end,
 })
 
--- ── Load all plugins ───────────────────────────────────────────────
+-- ═══════════════════════════════════════════════════════════════════════
+-- 始终加载的插件（启动必需的轻量插件）
+-- ═══════════════════════════════════════════════════════════════════════
 vim.pack.add({
 	-- Completion: blink.cmp (replaces nvim-cmp)
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("*") },
@@ -104,11 +106,6 @@ vim.pack.add({
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/tanvirtin/monokai.nvim",
 
-	-- Git
-	"https://github.com/lewis6991/gitsigns.nvim",
-	{ src = "https://github.com/NeogitOrg/neogit", version = vim.version.range("*") },
-	"https://github.com/sindrets/diffview.nvim",
-
 	-- Fuzzy finder
 	"https://github.com/nvim-lua/plenary.nvim",
 	"https://github.com/nvim-telescope/telescope.nvim",
@@ -126,30 +123,145 @@ vim.pack.add({
 	-- Copilot
 	"https://github.com/zbirenbaum/copilot.lua",
 
-	-- CMake
-	"https://github.com/Civitasv/cmake-tools.nvim",
+	-- dap 插件使用的异步库
+	"https://github.com/nvim-neotest/nvim-nio",
 
 	-- Debugging
 	"https://github.com/mfussenegger/nvim-dap",
 	"https://github.com/rcarriga/nvim-dap-ui",
 	"https://github.com/mfussenegger/nvim-dap-python",
-	"https://github.com/nvim-neotest/nvim-nio",
 
 	-- Misc
 	"https://github.com/stevearc/aerial.nvim", -- code outline
 	"https://github.com/mikavilpas/yazi.nvim",
-	{ src = "https://github.com/obsidian-nvim/obsidian.nvim", version = vim.version.range("*") },
 	{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
 	"https://github.com/olimorris/persisted.nvim",
+	"https://github.com/sindrets/diffview.nvim",
 
 	-- IM select
 	"https://github.com/keaising/im-select.nvim",
 
 	-- Avante.nvim (AI)
-	"https://github.com/yetone/avante.nvim",
 	"https://github.com/MunifTanjim/nui.nvim",
 	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/HakonHarnes/img-clip.nvim",
+})
+
+-- ═══════════════════════════════════════════════════════════════════════
+-- 延迟加载的插件（重型 / 不常用）
+-- ═══════════════════════════════════════════════════════════════════════
+local group = vim.api.nvim_create_augroup("LazyPlugins", { clear = true })
+
+---@param plugins (string|vim.pack.Spec)[]
+local function lazy_load(plugins)
+	vim.pack.add(plugins, {
+		load = function(plugin)
+			local data = plugin.spec.data or {}
+
+			-- Event trigger
+			if data.event then
+				vim.api.nvim_create_autocmd(data.event, {
+					group = group,
+					once = true,
+					pattern = data.pattern or "*",
+					callback = function()
+						vim.cmd.packadd(plugin.spec.name)
+						if data.config then
+							data.config(plugin)
+						end
+					end,
+				})
+			end
+
+			-- Keymap trigger
+			if data.keys then
+				local mode, lhs = data.keys[1], data.keys[2]
+				vim.keymap.set(mode, lhs, function()
+					vim.keymap.del(mode, lhs)
+					vim.cmd.packadd(plugin.spec.name)
+					if data.config then
+						data.config(plugin)
+					end
+					vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(lhs, true, false, true), "m", false)
+				end, { desc = data.desc })
+			end
+
+			-- Command trigger
+			if data.cmd then
+				vim.api.nvim_create_user_command(data.cmd, function(cmd_args)
+					pcall(vim.api.nvim_del_user_command, data.cmd)
+					vim.cmd.packadd(plugin.spec.name)
+					if data.config then
+						data.config(plugin)
+					end
+					vim.api.nvim_cmd({
+						cmd = data.cmd,
+						args = cmd_args.fargs,
+						bang = cmd_args.bang,
+						nargs = cmd_args.nargs,
+						range = cmd_args.range ~= 0 and { cmd_args.line1, cmd_args.line2 } or nil,
+						count = cmd_args.count ~= -1 and cmd_args.count or nil,
+					}, {})
+				end, {
+					nargs = data.nargs,
+					range = data.range,
+					bang = data.bang,
+					complete = data.complete,
+					count = data.count,
+				})
+			end
+		end,
+	})
+end
+
+lazy_load({
+	{
+		src = "https://github.com/Civitasv/cmake-tools.nvim",
+		data = {
+			pattern = { "*.cmake", "CMakeLists.txt" },
+			config = function(name)
+				require("config.cmake")
+			end,
+		},
+	},
+	{
+		src = "https://github.com/obsidian-nvim/obsidian.nvim",
+		version = vim.version.range("*"),
+		data = {
+			pattern = { "*.md" },
+			config = function(name)
+				require("config.obsidian")
+			end,
+		},
+	},
+	{
+		src = "https://github.com/lewis6991/gitsigns.nvim",
+		data = {
+			event = { "BufReadPre", "BufNewFile" },
+			config = function()
+				require("config.gitsigns")
+			end,
+		},
+	},
+	{
+		src = "https://github.com/NeogitOrg/neogit",
+		version = vim.version.range("*"),
+		data = {
+			keys = { "n", "<leader>ng" },
+			config = function()
+				require("neogit").setup({})
+			end,
+		},
+	},
+	{
+		src = "https://github.com/yetone/avante.nvim",
+		data = {
+			cmd = "AvanteAsk",
+			config = function()
+				require("config.avante")
+			end,
+		},
+	},
 })
 
 -- ── Early configuration (before after/plugin/ scripts) ────────────

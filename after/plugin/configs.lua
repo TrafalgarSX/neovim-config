@@ -14,7 +14,6 @@ require("config.bufferline")
 -- Editing (needed before first keystroke)
 require("config.nvim-autopairs")
 require("config.flash")
-require("config.gitsigns")
 
 -- Treesitter (syntax highlighting from first buffer)
 require("config.nvim-treesitter")
@@ -40,12 +39,9 @@ vim.schedule(function()
 	require("config.copilot")
 
 	-- Project-specific tools
-	require("config.cmake")
 	require("config.dap")
 	require("config.dappy")
-	require("neogit").setup({})
 	require("config.persisted")
-	require("config.obsidian")
 
 	-- Misc
 	require("aerial").setup({})
