@@ -162,9 +162,13 @@ local function lazy_load(plugins)
 			if data.event then
 				vim.api.nvim_create_autocmd(data.event, {
 					group = group,
-					once = true,
 					pattern = data.pattern or "*",
-					callback = function()
+					callback = function(args)
+						-- 条件检查：如果提供了 condition 但不满足，跳过
+						if data.condition and not data.condition(args) then
+							return -- 不加载，保留 autocmd 等下次
+						end
+						vim.api.nvim_del_autocmd(args.id) -- 手动删除，相当于 once
 						vim.cmd.packadd(plugin.spec.name)
 						if data.config then
 							data.config(plugin)
@@ -218,6 +222,7 @@ lazy_load({
 	{
 		src = "https://github.com/Civitasv/cmake-tools.nvim",
 		data = {
+			event = { "BufRead", "BufNewFile" },
 			pattern = { "*.cmake", "CMakeLists.txt" },
 			config = function(name)
 				require("config.cmake")
@@ -228,8 +233,9 @@ lazy_load({
 		src = "https://github.com/obsidian-nvim/obsidian.nvim",
 		version = vim.version.range("*"),
 		data = {
+			event = { "BufRead", "BufNewFile" },
 			pattern = { "*.md" },
-			config = function(name)
+			config = function()
 				require("config.obsidian")
 			end,
 		},
@@ -238,6 +244,9 @@ lazy_load({
 		src = "https://github.com/lewis6991/gitsigns.nvim",
 		data = {
 			event = { "BufReadPre", "BufNewFile" },
+			condition = function(args)
+				return vim.fs.root(args.buf, ".git") ~= nil
+			end,
 			config = function()
 				require("config.gitsigns")
 			end,
@@ -250,6 +259,7 @@ lazy_load({
 			keys = { "n", "<leader>ng" },
 			config = function()
 				require("neogit").setup({})
+				vim.keymap.set("n", "<leader>ng", "<cmd>Neogit<CR>", { desc = "Open Neogit" })
 			end,
 		},
 	},
