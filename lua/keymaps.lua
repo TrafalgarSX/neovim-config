@@ -61,23 +61,28 @@ keymap("i", "<C-;>", "<End>", opts)
 if vim.g.vscode then
 	-- call vscode commands from neovim
 	-- general keymaps
-	keymap({ "n", "i" }, "<C-`>", "<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>")
+	keymap(
+		{ "n", "i" },
+		"<C-`>",
+		"<cmd>lua require('vscode').action('workbench.action.terminal.toggleTerminal')<CR>",
+		opts
+	)
 	-- 格式化当前文件
-	keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>")
+	keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>", opts)
 	-- 打开 VSCode 的右侧的文件浏览
-	keymap({ "n", "v" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>")
+	keymap({ "n", "v" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>", opts)
 	-- 快速搜索文件，VSCode 中是 Ctrl+p
-	keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+	keymap({ "n", "v" }, "<leader>ff", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>", opts)
 	-- VSCode 中的 ctrl+shiflt+p 功能，打开 VSCode 的功能面板
-	keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>")
+	keymap({ "n", "v" }, "<leader>cp", "<cmd>lua require('vscode').action('workbench.action.showCommands')<CR>", opts)
 	-- 打开 VSCode 的搜索框
-	keymap({ "n", "v" }, "<leader>rg", "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>")
+	keymap({ "n", "v" }, "<leader>rg", "<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>", opts)
 	-- pin 当前打开的文件
-	keymap({ "n", "v" }, "<leader>pi", "<cmd>lua require('vscode').action('workbench.action.pinEditor')<CR>")
+	keymap({ "n", "v" }, "<leader>pi", "<cmd>lua require('vscode').action('workbench.action.pinEditor')<CR>", opts)
 	-- unpin 当前打开的文件
-	keymap({ "n", "v" }, "<leader>up", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>")
+	keymap({ "n", "v" }, "<leader>up", "<cmd>lua require('vscode').action('workbench.action.unpinEditor')<CR>", opts)
 	-- 使用 explorer 打开当前文件所在目录
-	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>")
+	keymap({ "n", "v" }, "<leader>fe", "<cmd>lua require('vscode').action('revealFileInOS')<CR>", opts)
 	-- 隐藏或显示 sidebar，即转换 sidebar 的可见性
 	keymap(
 		{ "n", "v" },
@@ -91,18 +96,26 @@ if vim.g.vscode then
 		"<cmd>lua require('vscode').action('workbench.action.findInFiles', {args = { query = vim.fn.expand('<cword>') }})<CR>"
 	)
 	-- 切换当前代码行的断点
-	keymap({ "n", "v" }, "<leader>b", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+	keymap(
+		{ "n", "v" },
+		"<leader>b",
+		"<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>",
+		opts
+	)
 	-- 显示快速修复列表
-	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
-
-	keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>")
-	keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>")
-	keymap({ "n", "v" }, "<leader>cr", "<cmd>lua require('vscode').action('code-runner.run')<CR>")
-
-	-- project manager keymaps
-	keymap({ "n", "v" }, "<leader>ps", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>")
-	keymap({ "n", "v" }, "<leader>pa", "<cmd>lua require('vscode').action('projectManager.listProjectsNewWindow')<CR>")
-	keymap({ "n", "v" }, "<leader>pe", "<cmd>lua require('vscode').action('projectManager.editProjects')<CR>")
+	keymap({ "n", "v" }, "<leader>a", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>", opts)
+	keymap({ "n", "v" }, "<leader>cn", "<cmd>lua require('vscode').action('notifications.clearAll')<CR>", opts)
+	keymap({ "n", "v" }, "<leader>sp", "<cmd>lua require('vscode').action('workbench.actions.view.problems')<CR>", opts)
+	keymap({ "n", "v" }, "<leader>cr", "<cmd>lua require('vscode').action('code-runner.run')<CR>", opts)
+	-- project manager keymap
+	keymap({ "n", "v" }, "<leader>ps", "<cmd>lua require('vscode').action('projectManager.saveProject')<CR>", opts)
+	keymap(
+		{ "n", "v" },
+		"<leader>pa",
+		"<cmd>lua require('vscode').action('projectManager.listProjectsNewWindow')<CR>",
+		opts
+	)
+	keymap({ "n", "v" }, "<leader>pe", "<cmd>lua require('vscode').action('projectManager.editProjects')<CR>", opts)
 else
 	-- For nvim-tree.lua
 	-- default leader key: \
@@ -132,5 +145,5 @@ else
 	keymap("n", "<C-up>", ":Yazi toggle<CR>", opts)
 
 	-- for Snacks.terminal
-	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal()<CR>", opts)
+	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle<CR>", opts)
 end
