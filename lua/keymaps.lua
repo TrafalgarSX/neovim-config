@@ -145,5 +145,5 @@ else
 	keymap("n", "<C-up>", ":Yazi toggle<CR>", opts)
 
 	-- for Snacks.terminal
-	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle<CR>", opts)
+	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle()<CR>", opts)
 end
