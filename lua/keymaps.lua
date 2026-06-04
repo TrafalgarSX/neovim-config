@@ -146,4 +146,6 @@ else
 
 	-- for Snacks.terminal
 	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle()<CR>", opts)
+
+	-- for test
 end

@@ -67,6 +67,10 @@ if not vim.g.vscode then
 	vim.g.loaded_netrwPlugin = 1
 end
 
+-- 禁用不必要的 provider 来提升启动速度
+vim.g.loaded_node_provider = 0 -- 如果启用不知道为什么 checkhealth 会在这里卡死
+vim.g.loaded_ruby_provider = 0 -- 绝大多数人都用不到
+vim.g.loaded_perl_provider = 0 -- 绝大多数人都用不到
 -- 平台相关设置
 if vim.fn.has("win32") == 1 then
 	vim.o.shell = "pwsh.exe"

@@ -9,7 +9,7 @@
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "avante.nvim": {
-      "rev": "20470a792ff85cd347dd68707d0adf473514182c",
+      "rev": "adec75957134b8ab4a37da35151671c2849f8599",
       "src": "https://github.com/yetone/avante.nvim"
     },
     "blink-cmp-avante": {
@@ -121,7 +121,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "07dff35e7c95288861200b788ef32d6103f107f0",
+      "rev": "229b79051b380377664edc4cbd534930154921a1",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -194,8 +194,9 @@
       "version": "'main'"
     },
     "yazi.nvim": {
-      "rev": "159ff0e2cabebb15afda921f7e0e0688ca7c2319",
-      "src": "https://github.com/mikavilpas/yazi.nvim"
+      "rev": "8a26074568790bb5c73e56eb871a74709a13dd43",
+      "src": "https://github.com/mikavilpas/yazi.nvim",
+      "version": ">=0.0.0"
     }
   }
 }

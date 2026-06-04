@@ -133,7 +133,7 @@ vim.pack.add({
 
 	-- Misc
 	"https://github.com/stevearc/aerial.nvim", -- code outline
-	"https://github.com/mikavilpas/yazi.nvim",
+	{ src = "https://github.com/mikavilpas/yazi.nvim", version = vim.version.range("*") },
 	{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
 	"https://github.com/olimorris/persisted.nvim",
 	"https://github.com/sindrets/diffview.nvim",
