@@ -1,4 +1,6 @@
-if vim.g.vscode then return end
+if vim.g.vscode then
+	return
+end
 
 local is_ok, cmp = pcall(require, "blink.cmp")
 if not is_ok then
@@ -41,6 +43,15 @@ cmp.setup({
 				fallbacks = {},
 				opts = {},
 			},
+			cmdline = {
+				min_keyword_length = function(ctx)
+					-- when typing a command, only show when the keyword is 3 characters or longer
+					if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+						return 2
+					end
+					return 0
+				end,
+			},
 		},
 	},
 
@@ -52,7 +63,20 @@ cmp.setup({
 
 	-- Cmdline completion (/, ?, :)
 	cmdline = {
-		keymap = { preset = "cmdline" },
+		keymap = {
+			["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+			["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+			["<CR>"] = { "accept_and_enter", "fallback" },
+			["<C-space>"] = { "show", "fallback" },
+
+			["<C-n>"] = { "select_next", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback" },
+			["<Right>"] = { "select_next", "fallback" },
+			["<Left>"] = { "select_prev", "fallback" },
+
+			["<C-y>"] = { "select_and_accept", "fallback" },
+			["<C-e>"] = { "cancel", "fallback" },
+		},
 		completion = { menu = { auto_show = true } },
 		sources = function()
 			local type = vim.fn.getcmdtype()

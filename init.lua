@@ -152,7 +152,8 @@ vim.pack.add({
 -- ═══════════════════════════════════════════════════════════════════════
 local group = vim.api.nvim_create_augroup("LazyPlugins", { clear = true })
 
----@param plugins (string|vim.pack.Spec)[]
+-- nvim 懒加载参考
+-- https://www.reddit.com/r/neovim/comments/1mx71rc/how_i_vastly_improved_my_lazy_loading_experience/---@param plugins (string|vim.pack.Spec)[]
 local function lazy_load(plugins)
 	vim.pack.add(plugins, {
 		load = function(plugin)
