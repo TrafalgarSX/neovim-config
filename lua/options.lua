@@ -73,7 +73,15 @@ vim.g.loaded_ruby_provider = 0 -- 绝大多数人都用不到
 vim.g.loaded_perl_provider = 0 -- 绝大多数人都用不到
 -- 平台相关设置
 if vim.fn.has("win32") == 1 then
-	vim.o.shell = "pwsh.exe"
+	vim.o.shell = "nu"
+	vim.o.shellcmdflag = "--no-config-file -c" -- 改成 nu 的参数
+	-- 不确定是否正确，先这样设置，后续再调整
+	vim.o.shellredir = "o+e> %s"
+	vim.o.shellpipe =
+		"| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+	vim.o.shellxquote = ""
+	vim.o.shellquote = ""
+	vim.o.shellxescape = ""
 	vim.g.python3_host_prog = "C:/Users/guoya/scoop/apps/python/current/python.exe"
 elseif vim.fn.has("unix") == 1 then
 	vim.g.python3_host_prog = "/usr/bin/python3"

@@ -14,6 +14,12 @@ cmp.setup({
 		-- Scroll docs with C-b / C-f
 		["<C-b>"] = { "scroll_documentation_up", "fallback" },
 		["<C-f>"] = { "scroll_documentation_down", "fallback" },
+		-- Close completion window, stay in insert mode
+		["<C-e>"] = { "cancel", "fallback" },
+		-- Manually trigger completion
+		["<C-Space>"] = { "show", "fallback" },
+		-- Accept selected candidate, fallback to newline when no menu
+		["<CR>"] = { "select_and_accept", "fallback" },
 	},
 
 	-- Appearance: nvim-cmp style menu layout
@@ -77,7 +83,15 @@ cmp.setup({
 			["<C-y>"] = { "select_and_accept", "fallback" },
 			["<C-e>"] = { "cancel", "fallback" },
 		},
-		completion = { menu = { auto_show = true } },
+		completion = {
+			list = {
+				selection = {
+					preselect = false,
+					auto_insert = true,
+				},
+			},
+			menu = { auto_show = true },
+		},
 		sources = function()
 			local type = vim.fn.getcmdtype()
 			if type == "/" or type == "?" then
