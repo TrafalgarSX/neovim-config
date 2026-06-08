@@ -11,7 +11,7 @@ if vim.g.vscode then
 		"https://github.com/numToStr/Comment.nvim",
 		"https://github.com/folke/flash.nvim",
 		"https://github.com/keaising/im-select.nvim",
-		"https://github.com/stevearc/conform.nvim",
+		{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
 	})
 
 	require("Comment").setup()
