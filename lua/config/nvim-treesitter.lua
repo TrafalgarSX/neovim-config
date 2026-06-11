@@ -3,7 +3,7 @@ if not is_ok then
 	return
 end
 
-local needed = {
+local parsers = {
 	"c",
 	"cpp",
 	"cmake",
@@ -22,20 +22,37 @@ local needed = {
 	"nu",
 }
 
+local filetypes = {
+	"c",
+	"cpp",
+	"cmake",
+	"javascript",
+	"lua",
+	"vim",
+	"yaml",
+	"toml",
+	"rust",
+	"python",
+	"json",
+	"markdown",
+	"zsh",
+	"ps1",
+	"nu",
+}
+
 nt.setup({
-	ensure_installed = needed,
+	ensure_installed = parsers,
 })
 
 -- Deferred: install missing parsers on demand instead of blocking startup
 vim.api.nvim_create_user_command("TSInstallAll", function()
-	local parsers = needed
 	for _, p in ipairs(parsers) do
 		pcall(vim.cmd, "TSInstall " .. p)
 	end
 end, { desc = "Install all configured treesitter parsers" })
 
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = needed,
+	pattern = filetypes,
 	callback = function()
 		-- folds, provided by Neovim
 		vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
