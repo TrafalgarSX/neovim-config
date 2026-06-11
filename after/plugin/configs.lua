@@ -4,6 +4,7 @@ end
 
 -- ── Eager setup: needed for the initial screen / first keystroke ──
 
+require("vim._core.ui2").enable({})
 -- Dashboard (must render first)
 require("snacks").setup(require("config.snacks"))
 

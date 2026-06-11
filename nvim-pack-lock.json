@@ -9,7 +9,7 @@
       "src": "https://github.com/stevearc/aerial.nvim"
     },
     "avante.nvim": {
-      "rev": "adec75957134b8ab4a37da35151671c2849f8599",
+      "rev": "e7a167e5bf7de92d406e371d500c803603ec642f",
       "src": "https://github.com/yetone/avante.nvim"
     },
     "blink-cmp-avante": {
@@ -30,7 +30,7 @@
       "src": "https://github.com/akinsho/bufferline.nvim"
     },
     "cmake-tools.nvim": {
-      "rev": "f9a3eb2be0b8148df470244e5c25aede3a3a28a5",
+      "rev": "38f320fb9f0c4c9f1019f412f561c4d370a94d23",
       "src": "https://github.com/Civitasv/cmake-tools.nvim"
     },
     "conform.nvim": {
@@ -39,7 +39,7 @@
       "version": ">=0.0.0"
     },
     "copilot.lua": {
-      "rev": "1d457ad5f267b8ef855a6b8b3fe152403cb00947",
+      "rev": "0415bd625c3076a6a5ee445be484574d55b4fbfc",
       "src": "https://github.com/zbirenbaum/copilot.lua"
     },
     "diffview.nvim": {
@@ -51,7 +51,7 @@
       "src": "https://github.com/stevearc/dressing.nvim"
     },
     "everforest": {
-      "rev": "aeef62ee97872d2557d25904d160ec93a4a355f8",
+      "rev": "85a86eb62409e3ec88713bff3d1b9d7374e112e4",
       "src": "https://github.com/sainnhe/everforest"
     },
     "flash.nvim": {
@@ -121,7 +121,7 @@
       "src": "https://github.com/rcarriga/nvim-dap-ui"
     },
     "nvim-lspconfig": {
-      "rev": "229b79051b380377664edc4cbd534930154921a1",
+      "rev": "ed19590a3a9792901553c388d1aadafce012f80d",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -134,7 +134,7 @@
       "version": "4.0.0 - 5.0.0"
     },
     "nvim-tree.lua": {
-      "rev": "07f541fcaa4a5ae019598240362449ab7e9812b3",
+      "rev": "82f58063d67defc620e1ef8be606fc62a7b5dc1e",
       "src": "https://github.com/nvim-tree/nvim-tree.lua"
     },
     "nvim-treesitter": {

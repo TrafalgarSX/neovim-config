@@ -4,7 +4,7 @@ local options = {
 	completeopt = { "menu", "menuone", "noselect" }, -- mostly just for cmp
 	mouse = "a", -- allow the mouse to be used in neovim
 
-	--	cmdheight = 2, -- more space in the neovim command line for displaying messages
+	cmdheight = 0, -- more space in the neovim command line for displaying messages
 	conceallevel = 1, -- so that `` is visible in markdown files
 	fileencoding = "utf-8", -- the encoding written to a file
 	incsearch = true, -- search as characters are entered
