@@ -17,7 +17,7 @@ configs.setup({
 		selection_modes = {
 			["@parameter.outer"] = "v", -- charwise
 			["@function.outer"] = "V", -- linewise
-			-- ['@class.outer'] = '<c-v>', -- blockwise
+			["@class.outer"] = "<c-v>", -- blockwise
 		},
 		-- If you set this to `true` (default is `false`) then any textobject is
 		-- extended to include preceding or succeeding whitespace. Succeeding
@@ -38,10 +38,10 @@ configs.setup({
 
 -- keymaps
 -- You can use the capture groups defined in `textobjects.scm`
-vim.keymap.set({ "n", "x", "o" }, "]m", function()
+vim.keymap.set({ "n", "x", "o" }, "]f", function()
 	require("nvim-treesitter-textobjects.move").goto_next_start("@function.outer", "textobjects")
 end)
-vim.keymap.set({ "n", "x", "o" }, "]]", function()
+vim.keymap.set({ "n", "x", "o" }, "]c", function()
 	require("nvim-treesitter-textobjects.move").goto_next_start("@class.outer", "textobjects")
 end)
 -- You can also pass a list to group multiple queries.
@@ -56,24 +56,24 @@ vim.keymap.set({ "n", "x", "o" }, "]z", function()
 	require("nvim-treesitter-textobjects.move").goto_next_start("@fold", "folds")
 end)
 
-vim.keymap.set({ "n", "x", "o" }, "]M", function()
+vim.keymap.set({ "n", "x", "o" }, "]F", function()
 	require("nvim-treesitter-textobjects.move").goto_next_end("@function.outer", "textobjects")
 end)
-vim.keymap.set({ "n", "x", "o" }, "][", function()
+vim.keymap.set({ "n", "x", "o" }, "]C", function()
 	require("nvim-treesitter-textobjects.move").goto_next_end("@class.outer", "textobjects")
 end)
 
-vim.keymap.set({ "n", "x", "o" }, "[m", function()
+vim.keymap.set({ "n", "x", "o" }, "[f", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_start("@function.outer", "textobjects")
 end)
-vim.keymap.set({ "n", "x", "o" }, "[[", function()
+vim.keymap.set({ "n", "x", "o" }, "[c", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_start("@class.outer", "textobjects")
 end)
 
-vim.keymap.set({ "n", "x", "o" }, "[M", function()
+vim.keymap.set({ "n", "x", "o" }, "[F", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_end("@function.outer", "textobjects")
 end)
-vim.keymap.set({ "n", "x", "o" }, "[]", function()
+vim.keymap.set({ "n", "x", "o" }, "[C", function()
 	require("nvim-treesitter-textobjects.move").goto_previous_end("@class.outer", "textobjects")
 end)
 
@@ -88,10 +88,10 @@ end)
 
 -- keymaps
 -- You can use the capture groups defined in `textobjects.scm`
-vim.keymap.set({ "x", "o" }, "am", function()
+vim.keymap.set({ "x", "o" }, "af", function()
 	require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
 end)
-vim.keymap.set({ "x", "o" }, "im", function()
+vim.keymap.set({ "x", "o" }, "if", function()
 	require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
 end)
 vim.keymap.set({ "x", "o" }, "ac", function()

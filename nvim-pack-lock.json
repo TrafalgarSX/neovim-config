@@ -70,6 +70,10 @@
       "rev": "11d779b26a9ab2b3db8c22c6ac9fb6e8ed4fea79",
       "src": "https://github.com/sainnhe/gruvbox-material"
     },
+    "hardtime.nvim": {
+      "rev": "b4e431934af1fe224a3a801f632c008278cb7628",
+      "src": "https://github.com/m4xshen/hardtime.nvim"
+    },
     "im-select.nvim": {
       "rev": "963a4e9d528ef8a8d328eeff690593b0146d30e2",
       "src": "https://github.com/keaising/im-select.nvim"

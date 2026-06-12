@@ -13,10 +13,10 @@ vim.g.maplocalleader = " "
 
 -- Hint: see `:h vim.map.set()`
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", "<space><space>h", "<C-w>h", opts)
+keymap("n", "<space><space>j", "<C-w>j", opts)
+keymap("n", "<space><space>k", "<C-w>k", opts)
+keymap("n", "<space><space>l", "<C-w>l", opts)
 
 -- Resize with arrows
 -- delta: 2 lines
@@ -146,6 +146,9 @@ else
 
 	-- for Snacks.terminal
 	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle()<CR>", opts)
+
+	-- for hardtime
+	keymap("n", "<space>ht", ":Hardtime toggle<CR>", opts)
 
 	-- for test
 end

@@ -145,6 +145,9 @@ vim.pack.add({
 	"https://github.com/MunifTanjim/nui.nvim",
 	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/HakonHarnes/img-clip.nvim",
+
+	-- 纠正习惯，依赖于  nui.nvim
+	"https://github.com/m4xshen/hardtime.nvim",
 })
 
 -- ═══════════════════════════════════════════════════════════════════════
