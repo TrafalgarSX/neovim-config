@@ -27,9 +27,9 @@ require("config.trouble")
 require("config.conform")
 
 -- Lightweight, no-setup plugins
+require("config.hardtime")
 require("Comment").setup()
 require("im_select").setup({})
-require("hardtime").setup()
 -- ── Deferred setup: not needed for the dashboard ──
 vim.schedule(function()
 	-- UI (file tree, fuzzy finder)
