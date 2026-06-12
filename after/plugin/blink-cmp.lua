@@ -8,9 +8,12 @@ if not is_ok then
 end
 
 cmp.setup({
-	-- Use super-tab for VSCode-like Tab-to-accept behavior
+	-- Tab to select next candidate，Enter to accept
 	keymap = {
-		preset = "super-tab",
+		preset = "default",
+		["<Tab>"] = { "show_and_insert_or_accept_single", "select_next" },
+		["<S-Tab>"] = { "show_and_insert_or_accept_single", "select_prev" },
+        ["<CR>"] = { "accept", "fallback" },
 		-- Scroll docs with C-b / C-f
 		["<C-b>"] = { "scroll_documentation_up", "fallback" },
 		["<C-f>"] = { "scroll_documentation_down", "fallback" },
@@ -18,8 +21,7 @@ cmp.setup({
 		["<C-e>"] = { "cancel", "fallback" },
 		-- Manually trigger completion
 		["<C-Space>"] = { "show", "fallback" },
-		-- Accept selected candidate, fallback to newline when no menu
-		["<CR>"] = { "select_and_accept", "fallback" },
+
 	},
 
 	-- Appearance: nvim-cmp style menu layout
