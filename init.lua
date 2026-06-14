@@ -280,6 +280,7 @@ lazy_load({
 
 -- ── Early configuration (before after/plugin/ scripts) ────────────
 require("colorscheme")
+require("ssh_vim")
 -- Mason + LSP 延迟到 UI 渲染后加载
 vim.schedule(function()
 	require("lsp_utils")
