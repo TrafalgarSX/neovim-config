@@ -8,7 +8,15 @@ local function enable_ime_sync()
 
 	-- 定义向 WezTerm 发送信号的函数
 	local function send_to_wezterm(mode_value)
-		io.write(string.format("\x1b]777;UserVar;VimMode=%s\x07", mode_value))
+		-- 1. 使用 Neovim 内置 API 将模式值（Normal 或 Insert）进行 Base64 编码
+		local b64_value = vim.base64.encode(mode_value)
+
+		-- vim.notify(b64_value, vim.log.levels.WARN, { title = "Nvim-config" })
+		-- 2. 构造 WezTerm 官方标准的 1337 协议字符串
+		-- \x1b]1337;SetUserVar=变量名=Base64后的值\x07
+		local osc_sequence = string.format("\x1b]1337;SetUserVar=VimMode=%s\x07", b64_value)
+
+		io.write(osc_sequence)
 		io.flush()
 	end
 
