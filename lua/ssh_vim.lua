@@ -38,7 +38,7 @@ local function enable_ime_sync()
 	})
 
 	_G.ime_sync_enabled = true
-	print("🚀 输入法同步已【开启】")
+	vim.notify("🚀 输入法同步已【开启】", vim.log.levels.INFO, { style = "fancy", title = "WezTerm IME" })
 end
 
 -- 3. 定义一个函数：专门用来“关闭”自动命令
@@ -46,7 +46,7 @@ local function disable_ime_sync()
 	-- 核心：直接清空这个组，里面的所有 autocmd 会瞬间失效
 	vim.api.nvim_create_augroup("WeztermImeSync", { clear = true })
 	_G.ime_sync_enabled = false
-	print("🛑 输入法同步已【关闭】")
+	vim.notify("🛑 输入法同步已【关闭】", vim.log.levels.WARN, { style = "fancy", title = "WezTerm IME" })
 end
 
 -- 4. 定义 Toggle 切换函数

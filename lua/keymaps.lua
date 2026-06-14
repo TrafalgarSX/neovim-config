@@ -120,7 +120,6 @@ else
 	-- For nvim-tree.lua
 	-- default leader key: \
 	keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
-	keymap("n", "<leader>bd", ":lua Snacks.bufdelete()<CR>", opts)
 
 	-- For nvim-treesitter
 	-- 1. Press `gss` to intialize selection. (ss = start selection)
@@ -144,9 +143,10 @@ else
 	keymap("n", "<space>cw", ":Yazi cwd<CR>", opts)
 	keymap("n", "<C-up>", ":Yazi toggle<CR>", opts)
 
-	-- for Snacks.terminal
+	-- for Snacks
 	keymap({ "n", "i" }, "<C-`>", ":lua Snacks.terminal.toggle()<CR>", opts)
-
+	keymap("n", "<space>sh", ":lua Snacks.notifier.show_history()<CR>", opts)
+	keymap("n", "<leader>bd", ":lua Snacks.bufdelete()<CR>", opts)
 	-- for hardtime
 	keymap("n", "<space>ht", ":Hardtime toggle<CR>", opts)
 
