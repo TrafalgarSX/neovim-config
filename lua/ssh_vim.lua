@@ -1,5 +1,10 @@
--- 1. 定义一个全局变量，用来记录当前输入法同步是开启还是关闭
-_G.ime_sync_enabled = false -- 默认关闭
+if vim.env.SSH_CONNECTION then
+	-- 1. 定义一个全局变量，用来记录当前输入法同步是开启还是关闭
+	_G.ime_sync_enabled = true -- 默认关闭
+else
+	-- 这是本地终端
+	_G.ime_sync_enabled = false -- 默认关闭
+end
 
 -- 2. 定义一个函数：专门用来“开启”自动命令
 local function enable_ime_sync()
