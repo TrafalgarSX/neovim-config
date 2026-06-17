@@ -54,6 +54,12 @@ local function disable_ime_sync()
 	vim.notify("🛑 输入法同步已【关闭】", vim.log.levels.WARN, { style = "fancy", title = "WezTerm IME" })
 end
 
+if _G.ime_sync_enabled then
+	enable_ime_sync()
+else
+	disable_ime_sync()
+end
+
 -- 4. 定义 Toggle 切换函数
 local function toggle_ime_sync()
 	if _G.ime_sync_enabled then
