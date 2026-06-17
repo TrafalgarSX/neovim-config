@@ -100,7 +100,7 @@ nvim_tree.setup({
 	on_attach = on_attach,
 	renderer = {},
 	filters = {
-		custom = { ".cache", "node_modules" },
+		custom = { ".cache", "node_modules", "CMakeFiles" },
 	},
 	diagnostics = {
 		enable = true,

@@ -95,6 +95,11 @@ if vim.g.vscode then
 		"<leader>fw",
 		"<cmd>lua require('vscode').action('workbench.action.findInFiles', {args = { query = vim.fn.expand('<cword>') }})<CR>"
 	)
+
+	-- workbench.action.focusLeftGroup
+	keymap("n", "<leader><leader>h", "<cmd>lua require('vscode').action('workbench.action.focusLeftGroup')<CR>", opts)
+
+	keymap("n", "<leader><leader>l", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>", opts)
 	-- 切换当前代码行的断点
 	keymap(
 		{ "n", "v" },
