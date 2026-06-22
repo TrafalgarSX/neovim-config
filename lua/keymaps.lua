@@ -68,7 +68,7 @@ if vim.g.vscode then
 		opts
 	)
 	-- 格式化当前文件
-	keymap({ "n", "v" }, "<leader>fd", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>", opts)
+	keymap({ "n", "v" }, "<leader>cf", "<cmd>lua require('vscode').action('editor.action.formatDocument')<CR>", opts)
 	-- 打开 VSCode 的右侧的文件浏览
 	keymap({ "n", "v" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>", opts)
 	-- 快速搜索文件，VSCode 中是 Ctrl+p
