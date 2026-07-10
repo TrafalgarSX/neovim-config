@@ -26,6 +26,9 @@ require("config.trouble")
 -- Formatting
 require("config.conform")
 
+-- nvimn-surround
+require("config.nvim-surround")
+
 -- Lightweight, no-setup plugins
 require("config.hardtime")
 require("Comment").setup()

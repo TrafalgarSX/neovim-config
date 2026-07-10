@@ -18,6 +18,7 @@ if vim.g.vscode then
 	require("im_select").setup({})
 	require("config.conform")
 	require("config.flash")
+	require("config.nvim-surround")
 	return -- <-- everything below is skipped in VSCode
 end
 

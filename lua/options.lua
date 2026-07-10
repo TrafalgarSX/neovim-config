@@ -60,6 +60,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
+-- For nvim-surround
+-- 参见 `:h nvim-surround.options`
+vim.g.nvim_surround_no_mappings = true
+
 -- For nvim-tree
 -- disable netrw at the very start of your init.lua (strongly advised)
 if not vim.g.vscode then
