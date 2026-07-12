@@ -15,6 +15,7 @@ require("config.bufferline")
 -- Editing (needed before first keystroke)
 require("config.nvim-autopairs")
 require("config.flash")
+require("config.mini-jump2d")
 
 -- Treesitter (syntax highlighting from first buffer)
 require("config.nvim-treesitter")

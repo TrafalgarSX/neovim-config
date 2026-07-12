@@ -12,6 +12,7 @@ if vim.g.vscode then
 		"https://github.com/folke/flash.nvim",
 		"https://github.com/keaising/im-select.nvim",
 		{ src = "https://github.com/stevearc/conform.nvim", version = vim.version.range("*") },
+		{ src = "https://github.com/nvim-mini/mini.jump2d", version = "stable" },
 	})
 
 	require("Comment").setup()
@@ -19,6 +20,7 @@ if vim.g.vscode then
 	require("config.conform")
 	require("config.flash")
 	require("config.nvim-surround")
+	require("config.mini-jump2d")
 	return -- <-- everything below is skipped in VSCode
 end
 
@@ -117,6 +119,7 @@ vim.pack.add({
 	{ src = "https://github.com/kylechui/nvim-surround", version = vim.version.range("4.x") },
 	"https://github.com/numToStr/Comment.nvim",
 	"https://github.com/folke/flash.nvim",
+	{ src = "https://github.com/nvim-mini/mini.jump2d", version = "stable" },
 
 	-- Diagnostics / Trouble
 	{ src = "https://github.com/folke/trouble.nvim", version = "main" },

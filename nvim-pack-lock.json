@@ -95,6 +95,11 @@
       "src": "https://github.com/mason-org/mason.nvim",
       "version": ">=0.0.0"
     },
+    "mini.jump2d": {
+      "rev": "ef08ddb40e04657b9439427f276b0546a8837c04",
+      "src": "https://github.com/nvim-mini/mini.jump2d",
+      "version": "'stable'"
+    },
     "monokai.nvim": {
       "rev": "b8bd44d5796503173627d7a1fc51f77ec3a08a63",
       "src": "https://github.com/tanvirtin/monokai.nvim"
