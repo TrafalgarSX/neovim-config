@@ -107,7 +107,7 @@ vim.pack.add({
 	"https://github.com/sainnhe/everforest",
 	"https://github.com/sainnhe/gruvbox-material",
 	"https://github.com/folke/tokyonight.nvim",
-	"https://github.com/tanvirtin/monokai.nvim",
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 
 	-- Fuzzy finder
 	"https://github.com/nvim-lua/plenary.nvim",
